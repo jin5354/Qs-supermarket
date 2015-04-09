@@ -1,0 +1,2200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2 -->
+<html lang="en" class=""><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    
+    
+    <title>第1章  一个简单的博客 · nswbmw/N-blog Wiki</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site"><meta content="summary" name="twitter:card"><meta content="nswbmw/N-blog" name="twitter:title"><meta content="N-blog - 使用 Express + MongoDB 搭建多人博客" name="twitter:description"><meta content="https://avatars2.githubusercontent.com/u/4279697?v=3&amp;s=400" name="twitter:image:src">
+      <meta content="GitHub" property="og:site_name"><meta content="object" property="og:type"><meta content="https://avatars2.githubusercontent.com/u/4279697?v=3&amp;s=400" property="og:image"><meta content="nswbmw/N-blog" property="og:title"><meta content="https://github.com/nswbmw/N-blog" property="og:url"><meta content="N-blog - 使用 Express + MongoDB 搭建多人博客" property="og:description">
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="web-socket" href="wss://live.github.com/_sockets/Njg2ODk1MDplZTFkOWJkYzU1NjUzZThjZGE0OTJlNThhM2FiN2UzNDoyNzYyMDgxMGQxMzU2NzE4NTQwZTMxZDUwMTI1ODk4NGYwYTM0M2EwNDRlZWZmNzcxYmVmZjEzMWU4MTAzYzEy--b4c5df621834d921e1b408025a1ee8a65ae8d614">
+    <meta name="pjax-timeout" content="1000">
+    <link rel="sudo-modal" href="https://github.com/sessions/sudo_modal">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_wiki" data-pjax-transient="">
+      <meta name="google-analytics" content="UA-3769691-2">
+
+    <meta content="collector.githubapp.com" name="octolytics-host"><meta content="collector-cdn.github.com" name="octolytics-script-host"><meta content="github" name="octolytics-app-id"><meta content="6AB9367D:60B6:48A0EB1:552526E7" name="octolytics-dimension-request_id"><meta content="6868950" name="octolytics-actor-id"><meta content="jin5354" name="octolytics-actor-login"><meta content="3bdfe5ba36533f354a7dac993b49e1a1e9e4a0adcde9af3202007e1d2a22f8b1" name="octolytics-actor-hash">
+    
+    <meta content="Rails, view, wiki#show" name="analytics-event">
+    <meta class="js-ga-set" name="dimension1" content="Logged In">
+    <meta class="js-ga-set" name="dimension2" content="Header v4">
+    <meta name="is-dotcom" content="true">
+    <meta name="hostname" content="github.com">
+    <meta name="user-login" content="jin5354">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="u+zX4YCRBZbpUiqQyoa4TL+L862egmLApDebOib6WJRLgZdm5d5X6Io70ypqUowODB2uUb+s2lmc0V6/CulTzw==" name="csrf-token">
+
+    <link href="https://assets-cdn.github.com/assets/github-02db968c8fd9a07a877f0372e0d18fd9cd837b3a97709d9549deeeaa90f4f273.css" media="all" rel="stylesheet">
+    <link href="https://assets-cdn.github.com/assets/github2-8fa0a5d1dfcc62dc539be816ed21b516fc981340a4bb04e143fc77ec1a50883e.css" media="all" rel="stylesheet">
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="12be9269acb8a9c3fc6af6676bd028f4">
+
+      
+  <meta name="description" content="N-blog - 使用 Express + MongoDB 搭建多人博客">
+  <meta name="go-import" content="github.com/nswbmw/N-blog git https://github.com/nswbmw/N-blog.git">
+
+  <meta content="4279697" name="octolytics-dimension-user_id"><meta content="nswbmw" name="octolytics-dimension-user_login"><meta content="10309334" name="octolytics-dimension-repository_id"><meta content="nswbmw/N-blog" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="10309334" name="octolytics-dimension-repository_network_root_id"><meta content="nswbmw/N-blog" name="octolytics-dimension-repository_network_root_nwo">
+  <link href="https://github.com/nswbmw/N-blog/commits/master.atom" rel="alternate" title="Recent Commits to N-blog:master" type="application/atom+xml">
+
+  <script type="text/javascript" async="" src="https://collector-cdn.github.com/assets/api.js"></script></head>
+
+
+  <body class="logged_in  env-production macintosh vis-public">
+    <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div class="wrapper">
+      
+      
+      
+
+
+        <div class="header header-logged-in true" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+  <span class="mega-octicon octicon-mark-github"></span>
+</a>
+
+
+      <div class="site-search repo-scope js-site-search" role="search">
+          <form accept-charset="UTF-8" action="https://github.com/nswbmw/N-blog/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="/nswbmw/N-blog/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+  <input type="text" class="js-site-search-field is-clearable" data-hotkey="s" name="q" placeholder="Search" data-global-scope-placeholder="Search GitHub" data-repo-scope-placeholder="Search" tabindex="1" autocapitalize="off">
+  <div class="scope-badge">This repository</div>
+</form>
+      </div>
+
+      <ul class="header-nav left" role="navigation">
+          <li class="header-nav-item">
+            <a href="https://github.com/pulls" class="js-selected-navigation-item header-nav-link" data-ga-click="New header, click, Nav menu - item:pulls context:user" data-hotkey="g p" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls">
+              Pull requests
+</a>          </li>
+          <li class="header-nav-item">
+            <a href="https://github.com/issues" class="js-selected-navigation-item header-nav-link" data-ga-click="New header, click, Nav menu - item:issues context:user" data-hotkey="g i" data-selected-links="/issues /issues/assigned /issues/mentioned /issues">
+              Issues
+</a>          </li>
+            <li class="header-nav-item">
+              <a class="header-nav-link" href="https://gist.github.com/" data-ga-click="New header, go to gist, text:gist">Gist</a>
+            </li>
+      </ul>
+
+      
+<ul class="header-nav user-nav right" id="user-links">
+  <li class="header-nav-item">
+        <a href="https://github.com/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+        <span class="mail-status all-read"></span>
+        <span class="octicon octicon-inbox"></span>
+</a>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link tooltipped tooltipped-s js-menu-target" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" aria-label="Create new..." data-ga-click="New header, create new, icon:add">
+      <span class="octicon octicon-plus left"></span>
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <ul class="dropdown-menu dropdown-menu-sw">
+        
+<li>
+  <a href="https://github.com/new" data-ga-click="Header, create new repository, icon:repo"><span class="octicon octicon-repo"></span> New repository</a>
+</li>
+<li>
+  <a href="https://github.com/organizations/new" data-ga-click="Header, create new organization, icon:organization"><span class="octicon octicon-organization"></span> New organization</a>
+</li>
+
+
+  <li class="dropdown-divider"></li>
+  <li class="dropdown-header">
+    <span title="nswbmw/N-blog">This repository</span>
+  </li>
+    <li>
+      <a href="https://github.com/nswbmw/N-blog/issues/new" data-ga-click="Header, create new issue, icon:issue"><span class="octicon octicon-issue-opened"></span> New issue</a>
+    </li>
+
+      </ul>
+    </div>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link name tooltipped tooltipped-s js-menu-target" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" aria-label="View profile and more" data-ga-click="New header, show menu, icon:avatar">
+      <img alt="@jin5354" class="avatar" data-user="6868950" height="20" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/6868950" width="20">
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <ul class="dropdown-menu dropdown-menu-sw">
+        <li>
+          <a href="https://github.com/jin5354" data-ga-click="New header, go to profile, text:view profile">
+            <span class="octicon octicon-person"></span>
+            View profile
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/stars" data-ga-click="New header, go to starred repos, text:starred repositories">
+            <span class="octicon octicon-star"></span>
+            Starred repositories
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/explore" data-ga-click="New header, go to explore, text:explore">
+            <span class="octicon octicon-telescope"></span>
+            Explore
+          </a>
+        </li>
+
+        <li>
+          <a href="https://help.github.com/" data-ga-click="New header, go to help, text:help">
+            <span class="octicon octicon-question"></span>
+            Help
+          </a>
+        </li>
+
+        <li class="dropdown-divider"></li>
+
+
+        <li>
+          <a href="https://github.com/settings/profile" data-ga-click="New header, go to settings, icon:settings">
+            <span class="octicon octicon-gear"></span>
+            Settings
+          </a>
+        </li>
+
+        <li>
+          <form accept-charset="UTF-8" action="https://github.com/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="Bh706I4htPY97/hNB6UBBm51L3ouNEd3vb0jfHdXUIA5vkweuJ5aBKCH9BCaUX947CSezi8zLBum6L/WJiKwcA=="></div>
+            <button class="sign-out-button" data-ga-click="New header, sign out, icon:logout">
+              <span class="octicon octicon-sign-out"></span>
+              Sign out
+            </button>
+</form>        </li>
+      </ul>
+    </div>
+  </li>
+</ul>
+
+
+
+    
+  </div>
+</div>
+
+        
+
+        
+
+
+      <div id="start-of-content" class="accessibility-aid"></div>
+          <div class="site" itemscope="" itemtype="http://schema.org/WebPage">
+    <div id="js-flash-container">
+      
+    </div>
+    <div class="pagehead repohead instapaper_ignore readability-menu">
+      <div class="container">
+        
+<ul class="pagehead-actions">
+
+  <li>
+      <form accept-charset="UTF-8" action="https://github.com/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="WahNNSYomH2Scw/y1oD+m0B/itWEs0BPLHoDRnzHq7Us2Mr/RKoF6Uw5w3vsbhowZfZlSzwOFdv+3NjJWQTjHg=="></div>    <input id="repository_id" name="repository_id" type="hidden" value="10309334">
+
+      <div class="select-menu js-menu-container js-select-menu">
+        <a href="https://github.com/nswbmw/N-blog/subscription" class="btn btn-sm btn-with-count select-menu-button js-menu-target" role="button" tabindex="0" aria-haspopup="true" data-ga-click="Repository, click Watch settings, action:wiki#show">
+          <span class="js-select-button">
+            <span class="octicon octicon-eye"></span>
+            Watch
+          </span>
+        </a>
+        <a class="social-count js-social-count" href="https://github.com/nswbmw/N-blog/watchers">
+          268
+        </a>
+
+        <div class="select-menu-modal-holder">
+          <div class="select-menu-modal subscription-menu-modal js-menu-content" aria-hidden="true">
+            <div class="select-menu-header">
+              <span class="select-menu-title">Notifications</span>
+              <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+            </div>
+
+            <div class="select-menu-list js-navigation-container" role="menu">
+
+              <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input checked="checked" id="do_included" name="do" type="radio" value="included">
+                  <span class="select-menu-item-heading">Not watching</span>
+                  <span class="description">Be notified when participating or @mentioned.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-eye"></span>
+                    Watch
+                  </span>
+                </div>
+              </div>
+
+              <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input id="do_subscribed" name="do" type="radio" value="subscribed">
+                  <span class="select-menu-item-heading">Watching</span>
+                  <span class="description">Be notified of all conversations.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-eye"></span>
+                    Unwatch
+                  </span>
+                </div>
+              </div>
+
+              <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input id="do_ignore" name="do" type="radio" value="ignore">
+                  <span class="select-menu-item-heading">Ignoring</span>
+                  <span class="description">Never be notified.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-mute"></span>
+                    Stop ignoring
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+</form>
+  </li>
+
+  <li>
+    
+  <div class="js-toggler-container js-social-container starring-container on">
+
+    <form accept-charset="UTF-8" action="https://github.com/nswbmw/N-blog/unstar" class="js-toggler-form starred js-unstar-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="X57ysyvzNojiVzjoVPd+vandEgd+lQ0dlO9h+QCphq3LFxltOvI1FIlygwWosMhVms/xRYgi3fxMUfjYTAjSLg=="></div>
+      <button class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Unstar nswbmw/N-blog" data-ga-click="Repository, click unstar button, action:wiki#show; text:Unstar">
+        <span class="octicon octicon-star"></span>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/nswbmw/N-blog/stargazers">
+          1,581
+        </a>
+</form>
+    <form accept-charset="UTF-8" action="https://github.com/nswbmw/N-blog/star" class="js-toggler-form unstarred js-star-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="MChE0zxA9an5cz4S7pVQfXXCpsUqIvtCm9WqpVk8b8S1tqBK0BH9cigzKPoBGPsZbRkcMzScMiV/S3P6HPSX5w=="></div>
+      <button class="btn btn-sm btn-with-count js-toggler-target" aria-label="Star this repository" title="Star nswbmw/N-blog" data-ga-click="Repository, click star button, action:wiki#show; text:Star">
+        <span class="octicon octicon-star"></span>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/nswbmw/N-blog/stargazers">
+          1,581
+        </a>
+</form>  </div>
+
+  </li>
+
+        <li>
+          <form accept-charset="UTF-8" action="https://github.com/nswbmw/N-blog/fork" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="HNlBQ+FP0Uz9/hiTTrFblI4d7yxBZm4oZJfq7C5HOtaEl/0O+dcCT8SkNvI2rX8J44NNvWzQExXxRb0IyFSRxA=="></div>
+            <button type="submit" class="btn btn-sm btn-with-count" data-ga-click="Repository, show fork modal, action:wiki#show; text:Fork" title="Fork your own copy of nswbmw/N-blog to your account" aria-label="Fork your own copy of nswbmw/N-blog to your account">
+              <span class="octicon octicon-repo-forked"></span>
+              Fork
+            </button>
+            <a href="https://github.com/nswbmw/N-blog/network" class="social-count">959</a>
+</form>        </li>
+
+</ul>
+
+        <h1 itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+          <span class="mega-octicon octicon-repo"></span>
+          <span class="author"><a href="https://github.com/nswbmw" class="url fn" itemprop="url" rel="author"><span itemprop="title">nswbmw</span></a></span><!--
+       --><span class="path-divider">/</span><!--
+       --><strong><a href="https://github.com/nswbmw/N-blog" class="js-current-repository" data-pjax="#js-repo-pjax-container">N-blog</a></strong>
+
+          <span class="page-context-loader">
+            <img alt="" height="16" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16">
+          </span>
+
+        </h1>
+      </div><!-- /.container -->
+    </div><!-- /.repohead -->
+
+    <div class="container">
+      <div class="repository-with-sidebar repo-container new-discussion-timeline">
+        <div class="repository-sidebar clearfix">
+            
+<nav class="sunken-menu repo-nav js-repo-nav js-sidenav-container-pjax js-octicon-loaders" role="navigation" data-pjax="#js-repo-pjax-container" data-issue-count-url="/nswbmw/N-blog/issues/counts">
+  <ul class="sunken-menu-group">
+    <li class="tooltipped tooltipped-w" aria-label="Code">
+      <a href="https://github.com/nswbmw/N-blog" aria-label="Code" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /nswbmw/N-blog">
+        <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+        <img alt="" class="mini-loader" height="16" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16">
+</a>    </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Issues">
+        <a href="https://github.com/nswbmw/N-blog/issues" aria-label="Issues" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /nswbmw/N-blog/issues">
+          <span class="octicon octicon-issue-opened"></span> <span class="full-word">Issues</span>
+          <span class="js-issue-replace-counter"></span>
+          <img alt="" class="mini-loader" height="16" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16">
+</a>      </li>
+
+    <li class="tooltipped tooltipped-w" aria-label="Pull requests">
+      <a href="https://github.com/nswbmw/N-blog/pulls" aria-label="Pull requests" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g p" data-selected-links="repo_pulls /nswbmw/N-blog/pulls">
+          <span class="octicon octicon-git-pull-request"></span> <span class="full-word">Pull requests</span>
+          <span class="js-pull-replace-counter"></span>
+          <img alt="" class="mini-loader" height="16" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16">
+</a>    </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Wiki">
+        <a href="https://github.com/nswbmw/N-blog/wiki" aria-label="Wiki" class="selected js-selected-navigation-item sunken-menu-item" data-hotkey="g w" data-selected-links="repo_wiki /nswbmw/N-blog/wiki">
+          <span class="octicon octicon-book"></span> <span class="full-word">Wiki</span>
+          <img alt="" class="mini-loader" height="16" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16">
+</a>      </li>
+  </ul>
+  <div class="sunken-menu-separator"></div>
+  <ul class="sunken-menu-group">
+
+    <li class="tooltipped tooltipped-w" aria-label="Pulse">
+      <a href="https://github.com/nswbmw/N-blog/pulse" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-selected-links="pulse /nswbmw/N-blog/pulse">
+        <span class="octicon octicon-pulse"></span> <span class="full-word">Pulse</span>
+        <img alt="" class="mini-loader" height="16" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16">
+</a>    </li>
+
+    <li class="tooltipped tooltipped-w" aria-label="Graphs">
+      <a href="https://github.com/nswbmw/N-blog/graphs" aria-label="Graphs" class="js-selected-navigation-item sunken-menu-item" data-selected-links="repo_graphs repo_contributors /nswbmw/N-blog/graphs">
+        <span class="octicon octicon-graph"></span> <span class="full-word">Graphs</span>
+        <img alt="" class="mini-loader" height="16" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16">
+</a>    </li>
+  </ul>
+
+
+</nav>
+
+              <div class="only-with-full-nav">
+                  
+<div class="clone-url open" data-protocol-type="http" data-url="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">HTTPS</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target" value="https://github.com/nswbmw/N-blog.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" data-copy-hint="Copy to clipboard" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="clone-url " data-protocol-type="ssh" data-url="/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">SSH</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target" value="git@github.com:nswbmw/N-blog.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" data-copy-hint="Copy to clipboard" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="clone-url " data-protocol-type="subversion" data-url="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">Subversion</span> checkout URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target" value="https://github.com/nswbmw/N-blog" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" data-copy-hint="Copy to clipboard" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+
+<p class="clone-options">You can clone with
+  <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" class="js-clone-selector" data-protocol="http">HTTPS</a>, <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" class="js-clone-selector" data-protocol="ssh">SSH</a>, or <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" class="js-clone-selector" data-protocol="subversion">Subversion</a>.
+  <a href="https://help.github.com/articles/which-remote-url-should-i-use" class="help tooltipped tooltipped-n" aria-label="Get help on which URL is right for you.">
+    <span class="octicon octicon-question"></span>
+  </a>
+</p>
+
+  <a href="github-mac://openRepo/https://github.com/nswbmw/N-blog" class="btn btn-sm sidebar-button" title="Save nswbmw/N-blog to your computer and use it in GitHub Desktop." aria-label="Save nswbmw/N-blog to your computer and use it in GitHub Desktop.">
+    <span class="octicon octicon-device-desktop"></span>
+    Clone in Desktop
+  </a>
+
+
+
+                <a href="https://github.com/nswbmw/N-blog/archive/master.zip" class="btn btn-sm sidebar-button" aria-label="Download the contents of nswbmw/N-blog as a zip file" title="Download the contents of nswbmw/N-blog as a zip file" rel="nofollow">
+                  <span class="octicon octicon-cloud-download"></span>
+                  Download ZIP
+                </a>
+              </div>
+        </div><!-- /.repository-sidebar -->
+
+        <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container="">
+          
+
+<div id="wiki-wrapper" class="wiki-wrapper page">
+<div class="gh-header">
+  <div class="gh-header-show">
+        <div class="gh-header-actions">
+          <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2/_edit" class="btn btn-sm ">Edit</a>
+          <a href="https://github.com/nswbmw/N-blog/wiki/_new" class="btn btn-sm btn-primary">New Page</a>
+        </div>
+    <h1 class="gh-header-title instapaper_title">第1章  一个简单的博客</h1>
+      <div class="gh-header-meta">
+        Hilu luke edited this page <time datetime="2015-01-11T08:49:12Z" is="relative-time" title="2015年1月11日 GMT+8下午4:49">on 11 Jan</time>
+        ·
+        <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2/_history" class="history">
+          21 revisions
+        </a>
+      </div>
+  </div>
+</div>
+<div id="wiki-content">
+  <div class="wrap has-rightbar">
+
+  <div id="wiki-rightbar">
+    <div class="wiki-pages-box readability-sidebar boxed-group flush js-wiki-pages-box " role="navigation">
+      
+<h3 class="js-wiki-toggle-collapse wiki-auxiliary-content">
+  <span class="octicon octicon-triangle-down caret-expanded"></span>
+  <span class="octicon octicon-triangle-right caret-collapsed"></span>
+  Pages <span class="counter">28</span>
+</h3>
+<div class="boxed-group-inner wiki-auxiliary-content wiki-auxiliary-content-no-bg">
+    <div class="filter-bar">
+      <input type="text" id="wiki-pages-filter" class="filter-input js-filterable-field" placeholder="Find a Page…" tabindex="2">
+    </div>
+
+  <ul class="wiki-pages" data-filterable-for="wiki-pages-filter" data-filterable-type="substring">
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki" class="wiki-page-link">Home</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/FAQ" class="wiki-page-link">FAQ</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-_id-%E6%9F%A5%E8%AF%A2" class="wiki-page-link">番外篇之——使用 _id 查询</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-Async" class="wiki-page-link">番外篇之——使用 Async</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-Disqus" class="wiki-page-link">番外篇之——使用 Disqus</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-generic-pool" class="wiki-page-link">番外篇之——使用 generic pool</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-Handlebars" class="wiki-page-link">番外篇之——使用 Handlebars</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-KindEditor" class="wiki-page-link">番外篇之——使用 KindEditor</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-Mongoose" class="wiki-page-link">番外篇之——使用 Mongoose</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8-Passport" class="wiki-page-link">番外篇之——使用 Passport</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%95%AA%E5%A4%96%E7%AF%87%E4%B9%8B%E2%80%94%E2%80%94%E9%83%A8%E7%BD%B2%E5%88%B0-Heroku" class="wiki-page-link">番外篇之——部署到 Heroku</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC10%E7%AB%A0--%E5%A2%9E%E5%8A%A0pv%E7%BB%9F%E8%AE%A1%E5%92%8C%E7%95%99%E8%A8%80%E7%BB%9F%E8%AE%A1" class="wiki-page-link">第10章  增加pv统计和留言统计</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC11%E7%AB%A0--%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E6%A3%80%E7%B4%A2%E5%8A%9F%E8%83%BD" class="wiki-page-link">第11章  增加文章检索功能</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC12%E7%AB%A0--%E5%A2%9E%E5%8A%A0%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5" class="wiki-page-link">第12章  增加友情链接</a></strong>
+    </li>
+    <li>
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC13%E7%AB%A0--%E5%A2%9E%E5%8A%A0404%E9%A1%B5%E9%9D%A2" class="wiki-page-link">第13章  增加404页面</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC14%E7%AB%A0--%E5%A2%9E%E5%8A%A0%E5%A4%B4%E5%83%8F" class="wiki-page-link">第14章  增加头像</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC15%E7%AB%A0-%E5%A2%9E%E5%8A%A0%E8%BD%AC%E8%BD%BD%E5%8A%9F%E8%83%BD%E5%92%8C%E8%BD%AC%E8%BD%BD%E7%BB%9F%E8%AE%A1" class="wiki-page-link">第15章 增加转载功能和转载统计</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC16%E7%AB%A0--%E5%A2%9E%E5%8A%A0%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD" class="wiki-page-link">第16章  增加日志功能</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC17%E7%AB%A0-%E5%B0%8F%E7%BB%93" class="wiki-page-link">第17章 小结</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/第1章 一个简单的博客 · nswbmw N-blog Wiki.html" class="wiki-page-link">第1章  一个简单的博客</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC2%E7%AB%A0--%E4%BD%BF%E7%94%A8-Markdown" class="wiki-page-link">第2章  使用 Markdown</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC3%E7%AB%A0-%E5%A2%9E%E5%8A%A0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD" class="wiki-page-link">第3章 增加文件上传功能</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC4%E7%AB%A0--%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E9%A1%B5%E9%9D%A2%E5%92%8C%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2" class="wiki-page-link">第4章  实现用户页面和文章页面</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC5%E7%AB%A0-%E5%A2%9E%E5%8A%A0%E7%BC%96%E8%BE%91%E4%B8%8E%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD" class="wiki-page-link">第5章 增加编辑与删除功能</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC6%E7%AB%A0--%E5%AE%9E%E7%8E%B0%E7%95%99%E8%A8%80%E5%8A%9F%E8%83%BD" class="wiki-page-link">第6章  实现留言功能</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC7%E7%AB%A0--%E5%AE%9E%E7%8E%B0%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD" class="wiki-page-link">第7章  实现分页功能</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC8%E7%AB%A0--%E5%A2%9E%E5%8A%A0%E5%AD%98%E6%A1%A3%E9%A1%B5%E9%9D%A2" class="wiki-page-link">第8章  增加存档页面</a></strong>
+    </li>
+    <li class="wiki-more-pages">
+      <strong><a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC9%E7%AB%A0--%E5%A2%9E%E5%8A%A0%E6%A0%87%E7%AD%BE%E5%92%8C%E6%A0%87%E7%AD%BE%E9%A1%B5%E9%9D%A2" class="wiki-page-link">第9章  增加标签和标签页面</a></strong>
+    </li>
+    <li class="wiki-more-pages-link">
+      <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" class="js-wiki-more-pages-link">
+        Show 13 more pages…
+      </a>
+    </li>
+  </ul>
+</div>
+
+    </div>
+
+
+    <div class="clone-url">
+      <h5>Clone this wiki locally</h5>
+      <div class="input-group js-zeroclipboard-container">
+        <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target" value="https://github.com/nswbmw/N-blog.wiki.git" readonly="readonly">
+        <span class="input-group-button">
+          <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" data-copy-hint="Copy to clipboard" type="button"><span class="octicon octicon-clippy"></span></button>
+        </span>
+      </div>
+
+        <a href="github-mac://openRepo/https://github.com/nswbmw/N-blog.wiki" class="btn btn-sm sidebar-button" title="Save this wiki to your computer and use it in GitHub Desktop." aria-label="Save this wiki to your computer and use it in GitHub Desktop.">
+          <span class="octicon octicon-device-desktop"></span>
+          Clone in Desktop
+        </a>
+
+    </div>
+  </div>
+
+  <div id="wiki-body" class="gollum-markdown-content instapaper_body">
+    <div class="markdown-body">
+      <h2>
+<a id="user-content-学习环境" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83" aria-hidden="true"><span class="octicon octicon-link"></span></a>学习环境</h2>
+
+<p><strong>Node.js</strong> ： 0.10.32</p>
+
+<p><strong>Express</strong> ： 4.10.2</p>
+
+<p><strong>MongoDB</strong> ： 2.6.1</p>
+
+<h2>
+<a id="user-content-快速开始" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>快速开始</h2>
+
+<h3>
+<a id="user-content-安装-express" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%AE%89%E8%A3%85-express" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装 Express</h3>
+
+<p>express 是 Node.js 上最流行的 Web 开发框架，正如他的名字一样，使用它我们可以快速的开发一个 Web 应用。我们用 express 来搭建我们的博客，打开命令行，输入：</p>
+
+<pre><code>$ npm install -g express-generator
+</code></pre>
+
+<p>安装 express 命令行工具，使用它我们可以初始化一个 express 项目。</p>
+
+<h3>
+<a id="user-content-新建一个工程" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>新建一个工程</h3>
+
+<p>在命令行中输入：</p>
+
+<pre><code>$ express -e blog
+$ cd blog &amp;&amp; npm install
+</code></pre>
+
+<p>初始化一个 express 项目并安装所需模块，如下图所示：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.1.jpg" alt=""></p>
+
+<p>然后运行：</p>
+
+<pre><code>$ DEBUG=blog node ./bin/www
+</code></pre>
+
+<p>启动项目，此时命令行中会显示 <strong>blog Express server listening on port 3000 +0ms</strong>，在浏览器里访问 <code>localhost:3000</code>，如下图所示：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.2.jpg" alt=""></p>
+
+<p>至此，我们用 express 初始化了一个工程项目，并指定使用 ejs 模板引擎，下一节我们讲解工程的内部结构。</p>
+
+<h3>
+<a id="user-content-工程结构" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>工程结构</h3>
+
+<p>我们回头看看生成的工程目录里面都有什么，打开我们的 blog 文件夹，里面如图所示：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.3.jpg" alt=""></p>
+
+<p><strong>app.js</strong>：启动文件，或者说入口文件<br>
+<strong>package.json</strong>：存储着工程的信息及模块依赖，当在 dependencies 中添加依赖的模块时，运行 <code>npm install</code>，npm 会检查当前目录下的 package.json，并自动安装所有指定的模块<br>
+<strong>node_modules</strong>：存放 package.json 中安装的模块，当你在 package.json 添加依赖的模块并安装后，存放在这个文件夹下<br>
+<strong>public</strong>：存放 image、css、js 等文件<br>
+<strong>routes</strong>：存放路由文件<br>
+<strong>views</strong>：存放视图文件或者说模版文件<br>
+<strong>bin</strong>：存放可执行文件</p>
+
+<p>打开app.js,让我们看看里面究竟有什么:</p>
+
+<pre><code>var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
+
+
+module.exports = app;
+</code></pre>
+
+<p>这里我们通过require()加载了express、path 等模块,以及 routes 文件夹下的index. js和 users.js 路由文件。 下面来讲解每行代码的含义。</p>
+
+<p>(1) var app = express()：生成一个express实例 app。<br>
+(2)app.set('views', path.join(__dirname, 'views’))：设置 views 文件夹为存放视图文件的目录, 即存放模板文件的地方,__dirname 为全局变量,存储当前正在执行的脚本所在的目录。<br>
+(3)app.set('view engine', 'ejs’)：设置视图模板引擎为 ejs。<br>
+(4)app.use(favicon(__dirname + '/public/favicon.ico’))：设置/public/favicon.ico为favicon图标。<br>
+(5)app.use(logger('dev’))：加载日志中间件。<br>
+(6)app.use(bodyParser.json())：加载解析json的中间件。<br>
+(7)app.use(bodyParser.urlencoded({ extended: false }))：加载解析urlencoded请求体的中间件。<br>
+(8)app.use(cookieParser())：加载解析cookie的中间件。<br>
+(9)app.use(express.static(path.join(__dirname, 'public')))：设置public文件夹为存放静态文件的目录。<br>
+(10)app.use('/', routes);和app.use('/users', users)：路由控制器。<br>
+(11)</p>
+
+<pre><code>app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+</code></pre>
+
+<p>捕获404错误，并转发到错误处理器。<br>
+(12)</p>
+
+<pre><code>if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+</code></pre>
+
+<p>开发环境下的错误处理器，将错误信息渲染error模版并显示到浏览器中。<br>
+(13)</p>
+
+<pre><code>app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
+</code></pre>
+
+<p>生产环境下的错误处理器，将错误信息渲染error模版并显示到浏览器中。<br>
+(14)module.exports = app ：导出app实例供其他模块调用。</p>
+
+<p>我们再看 bin/www 文件：</p>
+
+<pre><code>#!/usr/bin/env node
+var debug = require('debug')('blog');
+var app = require('../app');
+
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+</code></pre>
+
+<p>(1)#!/usr/bin/env node：表明是 node 可执行文件。<br>
+(2)var debug = require('debug')('blog’)：引入debug模块，打印调试日志。<br>
+(3)var app = require('../app’)：引入我们上面导出的app实例。<br>
+(4)app.set('port', process.env.PORT || 3000)：设置端口号。<br>
+(5)</p>
+
+<pre><code>var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+</code></pre>
+
+<p>启动工程并监听3000端口，成功后打印 Express server listening on port 3000。</p>
+
+<p>我们再看 routes/index.js 文件：</p>
+
+<pre><code>var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res) {
+  res.render('index', { title: 'Express' });
+});
+
+module.exports = router;
+</code></pre>
+
+<p>生成一个路由实例用来捕获访问主页的GET请求，导出这个路由并在app.js中通过app.use('/', routes); 加载。这样，当访问主页时，就会调用res.render('index', { title: 'Express' });渲染views/index.ejs模版并显示到浏览器中。</p>
+
+<p>我们再看看 views/index.ejs 文件：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+    &lt;link rel='stylesheet' href='/stylesheets/style.css' /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>在渲染模板时我们传入了一个变量 title 值为 express  字符串，模板引擎会将所有 &lt;%= title %&gt; 替换为 express ，然后将渲染后生成的html显示到浏览器中，如上图所示。</p>
+
+<p>在这一小节我们学习了如何创建一个工程并启动它，了解了工程的大体结构和运作流程，下一小节我们将学习 express 的基本使用及路由控制。</p>
+
+<h2>
+<a id="user-content-路由控制" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>路由控制</h2>
+
+<h3>
+<a id="user-content-工作原理" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86" aria-hidden="true"><span class="octicon octicon-link"></span></a>工作原理</h3>
+
+<p>routes/index.js 中有以下代码：</p>
+
+<pre><code>router.get('/', function(req, res){
+  res.render('index', { title: 'Express' });
+});
+</code></pre>
+
+<p>这段代码的意思是当访问主页时，调用 ejs 模板引擎，来渲染 index.ejs 模版文件（即将 title 变量全部替换为字符串 Express），生成静态页面并显示在浏览器中。 </p>
+
+<p>我们来作一些修改，以上代码实现了路由的功能，我们当然可以不要 routes/index.js 文件，把实现路由功能的代码都放在 app.js 里，但随着时间的推移 app.js 会变得臃肿难以维护，这也违背了代码模块化的思想，所以我们把实现路由功能的代码都放在 routes/index.js 里。官方给出的写法是在 app.js 中实现了简单的路由分配，然后再去 index.js 中找到对应的路由函数，最终实现路由功能。我们不妨把路由控制器和实现路由功能的函数都放到 index.js 里，app.js 中只有一个总的路由接口。</p>
+
+<p>最终将 app.js 修改为：</p>
+
+<pre><code>var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var routes = require('./routes/index');
+
+var app = express();
+
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+routes(app);
+
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
+});
+</code></pre>
+
+<p>修改 index.js 如下：</p>
+
+<pre><code>module.exports = function(app) {
+  app.get('/', function (req, res) {
+    res.render('index', { title: 'Express' });
+  });
+};
+</code></pre>
+
+<p>现在，再运行你的 app，你会发现主页毫无二致。这里我们在 routes/index.js 中通过 <code>module.exports</code> 导出了一个函数接口，在 app.js 中通过 <code>require</code> 加载了 index.js 然后通过 <code>routes(app)</code> 调用了 index.js 导出的函数。</p>
+
+<h3>
+<a id="user-content-路由规则" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E8%B7%AF%E7%94%B1%E8%A7%84%E5%88%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>路由规则</h3>
+
+<p>express 封装了多种 http 请求方式，我们主要只使用 <code>get</code> 和 <code>post</code> 两种，即 <code>app.get()</code> 和 <code>app.post()</code> 。</p>
+
+<p><code>app.get()</code> 和 <code>app.post()</code> 的第一个参数都为请求的路径，第二个参数为处理请求的回调函数，回调函数有两个参数分别是 req 和 res，代表请求信息和响应信息 。路径请求及对应的获取路径有以下几种形式：  </p>
+
+<p><strong>req.query</strong>  </p>
+
+<pre><code>// GET /search?q=tobi+ferret  
+req.query.q  
+// =&gt; "tobi ferret"  
+
+// GET /shoes?order=desc&amp;shoe[color]=blue&amp;shoe[type]=converse  
+req.query.order  
+// =&gt; "desc"  
+
+req.query.shoe.color  
+// =&gt; "blue"  
+
+req.query.shoe.type  
+// =&gt; "converse"  
+</code></pre>
+
+<p><strong>req.body</strong>  </p>
+
+<pre><code>// POST user[name]=tobi&amp;user[email]=tobi@learnboost.com  
+req.body.user.name  
+// =&gt; "tobi"  
+
+req.body.user.email  
+// =&gt; "tobi@learnboost.com"  
+
+// POST { "name": "tobi" }  
+req.body.name  
+// =&gt; "tobi"  
+</code></pre>
+
+<p><strong>req.params</strong></p>
+
+<pre><code>// GET /user/tj  
+req.params.name  
+// =&gt; "tj"  
+
+// GET /file/javascripts/jquery.js  
+req.params[0]  
+// =&gt; "javascripts/jquery.js"  
+</code></pre>
+
+<p><strong>req.param(name)</strong></p>
+
+<pre><code>// ?name=tobi  
+req.param('name')  
+// =&gt; "tobi"  
+
+// POST name=tobi  
+req.param('name')  
+// =&gt; "tobi"  
+
+// /user/tobi for /user/:name   
+req.param('name')  
+// =&gt; "tobi"  
+</code></pre>
+
+<p>不难看出：</p>
+
+<ul class="task-list">
+<li>
+<code>req.query</code>： 处理 get 请求，获取 get 请求参数</li>
+<li>
+<code>req.params</code>： 处理 /:xxx 形式的 get 或 post 请求，获取请求参数</li>
+<li>
+<code>req.body</code>： 处理 post 请求，获取 post 请求体</li>
+<li>
+<code>req.param()</code>： 处理 get 和 post 请求，但查找优先级由高到低为 req.params→req.body→req.query<br>
+</li>
+</ul>
+
+<p>路径规则还支持正则表达式，更多请查阅 <a href="http://expressjs.com/api.html">Express 官方文档</a> 。</p>
+
+<h3>
+<a id="user-content-添加路由规则" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1%E8%A7%84%E5%88%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加路由规则</h3>
+
+<p>当我们访问 localhost:3000 时，会显示： </p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.2.jpg" alt=""></p>
+
+<p>当我们访问 localhost:3000/nswbmw 这种不存在的页面时就会显示： </p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.4.jpg" alt=""></p>
+
+<p>这是因为不存在 <code>/nswbmw</code> 的路由规则，而且它也不是一个 public 目录下的文件，所以 express 返回了 404 Not Found 的错误。下面我们来添加这条路由规则，使得当访问 localhost:3000/nswbmw 时，页面显示 hello,world!  </p>
+
+<p><strong>注意</strong>：以下修改仅用于测试，看到效果后再把代码还原回来。</p>
+
+<p>修改 index.js，在 <code>app.get('/')</code> 函数后添加一条路由规则：  </p>
+
+<pre><code>app.get('/nswbmw', function (req, res) {
+  res.send('hello,world!');
+});
+</code></pre>
+
+<p>重启之后，访问 localhost:3000/nswbmw 页面显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.5.jpg" alt=""></p>
+
+<p>很简单吧？这一节我们学习了基本的路由规则及如何添加一条路由规则，下一节我们将学习模板引擎的知识。</p>
+
+<h2>
+<a id="user-content-模版引擎" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E6%A8%A1%E7%89%88%E5%BC%95%E6%93%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>模版引擎</h2>
+
+<h3>
+<a id="user-content-什么是模板引擎" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是模板引擎</h3>
+
+<p>模板引擎（Template Engine）是一个将页面模板和要显示的数据结合起来生成 HTML 页面的工具。<br>
+如果说上面讲到的 express 中的路由控制方法相当于 MVC 中的控制器的话，那模板引擎就相当于 MVC 中的视图。</p>
+
+<blockquote>
+<p>模板引擎的功能是将页面模板和要显示的数据结合起来生成 HTML 页面。它既可以运
+行在服务器端又可以运行在客户端，大多数时候它都在服务器端直接被解析为 HTML，解析完成后再传输给客户端，因此客户端甚至无法判断页面是否是模板引擎生成的。有时候模板引擎也可以运行在客户端，即浏览器中，典型的代表就是 XSLT，它以 XML 为输入，在客户端生成 HTML 页面。但是由于浏览器兼容性问题，XSLT 并不是很流行。目前的主流还是由服务器运行模板引擎。</p>
+
+<p>在 MVC 架构中，模板引擎包含在服务器端。控制器得到用户请求后，从模型获取数据，调用模板引擎。模板引擎以数据和页面模板为输入，生成 HTML 页面，然后返回给控制器，由控制器交回客户端。 </p>
+
+<p align="right">——《Node.js开发指南》</p>
+</blockquote>
+
+<p><strong>什么是 ejs ?</strong></p>
+
+<p>ejs 是模板引擎的一种，也是我们这个教程中使用的模板引擎，因为它使用起来十分简单，而且与 express 集成良好。</p>
+
+<h3>
+<a id="user-content-使用模板引擎" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用模板引擎</h3>
+
+<p>前面我们通过以下两行代码设置了模板文件的存储位置和使用的模板引擎：</p>
+
+<pre><code>app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+</code></pre>
+
+<p><strong>注意</strong>：我们通过 <code>express -e blog</code> 只是初始化了一个使用 ejs 模板引擎的工程而已，比如 node_modules 下添加了 ejs 模块，views 文件夹下有 index.ejs 。并不是说强制该工程只能使用 ejs 不能使用其他的模板引擎比如 jade，真正指定使用哪个模板引擎的是 <code>app.set('view engine', 'ejs');</code> 。</p>
+
+<p>在 routes/index.js 中通过调用 <code>res.render()</code> 渲染模版，并将其产生的页面直接返回给客户端。它接受两个参数，第一个是模板的名称，即 views 目录下的模板文件名，扩展名 .ejs 可选。第二个参数是传递给模板的数据对象，用于模板翻译。</p>
+
+<p>打开 views/index.ejs ，内容如下：</p>
+
+<p><strong>index.ejs</strong> </p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+    &lt;link rel='stylesheet' href='/stylesheets/style.css' /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>当我们 <code>res.render('index', { title: 'Express' });</code> 时，模板引擎会把 &lt;%= title %&gt; 替换成 Express，然后把替换后的页面显示给用户。  </p>
+
+<p>渲染后生成的页面代码为：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Express&lt;/title&gt;
+    &lt;link rel='stylesheet' href='/stylesheets/style.css' /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Express&lt;/h1&gt;
+    &lt;p&gt;Welcome to Express&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>注意</strong>：我们通过 <code>app.use(express.static(path.join(__dirname, 'public')))</code> 设置了静态文件目录为 public 文件夹，所以上面代码中的 <code>href='/stylesheets/style.css'</code> 就相当于 <code>href='public/stylesheets/style.css'</code> 。 </p>
+
+<p>ejs 的标签系统非常简单，它只有以下三种标签： </p>
+
+<ul class="task-list">
+<li>&lt;% code %&gt;：JavaScript 代码。<br>
+</li>
+<li>&lt;%= code %&gt;：显示替换过 HTML 特殊字符的内容。<br>
+</li>
+<li>&lt;%- code %&gt;：显示原始 HTML 内容。<br>
+</li>
+</ul>
+
+<p><strong>注意</strong>： <code>&lt;%= code %&gt;</code> 和 <code>&lt;%- code %&gt;</code> 的区别，当变量 code 为普通字符串时，两者没有区别。当 code 比如为 <code>&lt;h1&gt;hello&lt;/h1&gt;</code> 这种字符串时，<code>&lt;%= code %&gt;</code> 会原样输出 <code>&lt;h1&gt;hello&lt;/h1&gt;</code>，而 <code>&lt;%- code %&gt;</code> 则会显示 H1 大的 hello 字符串。  </p>
+
+<p>我们可以在 <code>&lt;%  %&gt;</code> 内使用 JavaScript 代码。下面是 ejs 的官方示例：  </p>
+
+<p><strong>The Data</strong>  </p>
+
+<pre><code>supplies: ['mop', 'broom', 'duster']
+</code></pre>
+
+<p><strong>The Template</strong></p>
+
+<pre><code>&lt;ul&gt;
+&lt;% for(var i=0; i&lt;supplies.length; i++) {%&gt;
+   &lt;li&gt;&lt;%= supplies[i] %&gt;&lt;/li&gt;
+&lt;% } %&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p><strong>The Result</strong></p>
+
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;mop&lt;/li&gt;
+  &lt;li&gt;broom&lt;/li&gt;
+  &lt;li&gt;duster&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>我们可以用上述三种标签实现页面模板系统能实现的任何内容。</p>
+
+<h3>
+<a id="user-content-页面布局" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面布局</h3>
+
+<p>这里我们不使用layout进行页面布局，而是使用更为简单灵活的include。include 的简单使用如下：  </p>
+
+<p><strong>index.ejs</strong></p>
+
+<pre><code>&lt;%- include a %&gt;
+hello,world!
+&lt;%- include b %&gt;
+</code></pre>
+
+<p><strong>a.ejs</strong></p>
+
+<pre><code>this is a.ejs
+</code></pre>
+
+<p><strong>b.ejs</strong></p>
+
+<pre><code>this is b.ejs
+</code></pre>
+
+<p>最终 index.ejs 会显示：</p>
+
+<pre><code>this is a.ejs
+hello,world!
+this is b.ejs
+</code></pre>
+
+<p>这一节我们学习了模版引擎的相关知识，下一节我们正式开始学习如何从头开始搭建一个多人博客。</p>
+
+<h2>
+<a id="user-content-搭建多人博客" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E6%90%AD%E5%BB%BA%E5%A4%9A%E4%BA%BA%E5%8D%9A%E5%AE%A2" aria-hidden="true"><span class="octicon octicon-link"></span></a>搭建多人博客</h2>
+
+<h3>
+<a id="user-content-功能分析" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>功能分析</h3>
+
+<p>搭建一个简单的具有多人注册、登录、发表文章、登出功能的博客。  </p>
+
+<h3>
+<a id="user-content-设计目标" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87" aria-hidden="true"><span class="octicon octicon-link"></span></a>设计目标</h3>
+
+<p>未登录：主页左侧导航显示 home、login、register，右侧显示已发表的文章、发表日期及作者。<br>
+登陆后：主页左侧导航显示 home、post、logout，右侧显示已发表的文章、发表日期及作者。<br>
+用户登录、注册、发表成功以及登出后都返回到主页。  </p>
+
+<p><strong>未登录</strong>：</p>
+
+<p>主页：  </p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.6.jpg" alt=""></p>
+
+<p>登录页：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.7.jpg" alt=""></p>
+
+<p>注册页：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.8.jpg" alt=""></p>
+
+<p><strong>登录后</strong>：</p>
+
+<p>主页:</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.9.jpg" alt=""></p>
+
+<p>发表页：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.10.jpg" alt=""></p>
+
+<p><strong>注意</strong>：没有登出页，当点击 LOGOUT 后，退出登陆并返回到主页。</p>
+
+<h3>
+<a id="user-content-路由规划" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E8%B7%AF%E7%94%B1%E8%A7%84%E5%88%92" aria-hidden="true"><span class="octicon octicon-link"></span></a>路由规划</h3>
+
+<p>我们已经把设计的构想图贴出来了，接下来的任务就是完成路由规划了。路由规划，或者说控制器规划是整个网站的骨架部分，因为它处于整个架构的枢纽位置，相当于各个接口之间的粘合剂，所以应该优先考虑。</p>
+
+<p>根据构思的设计图，我们作以下路由规划：  </p>
+
+<pre><code>/ ：首页
+/login ：用户登录
+/reg ：用户注册
+/post ：发表文章
+/logout ：登出
+</code></pre>
+
+<p>我们要求 <code>/login</code> 和 <code>/reg</code> 只能是未登录的用户访问，而 <code>/post</code> 和 <code>/logout</code> 只能是已登录的用户访问。左侧导航列表则针对已登录和未登录的用户显示不同的内容。 </p>
+
+<p>修改 index.js 如下：  </p>
+
+<pre><code>module.exports = function(app) {
+  app.get('/', function (req, res) {
+    res.render('index', { title: '主页' });
+  });
+  app.get('/reg', function (req, res) {
+    res.render('reg', { title: '注册' });
+  });
+  app.post('/reg', function (req, res) {
+  });
+  app.get('/login', function (req, res) {
+    res.render('login', { title: '登录' });
+  });
+  app.post('/login', function (req, res) {
+  });
+  app.get('/post', function (req, res) {
+    res.render('post', { title: '发表' });
+  });
+  app.post('/post', function (req, res) {
+  });
+  app.get('/logout', function (req, res) {
+  });
+};
+</code></pre>
+
+<p>如何针对已登录和未登录的用户显示不同的内容呢？或者说如何判断用户是否已经登陆了呢？进一步说如何记住用户的登录状态呢？我们通过引入会话（session）机制记录用户登录状态，还要访问数据库来保存和读取用户信息。下一节我们将学习如何使用数据库。</p>
+
+<h2>
+<a id="user-content-使用数据库" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用数据库</h2>
+
+<h3>
+<a id="user-content-mongodb简介" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#mongodb%E7%AE%80%E4%BB%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>MongoDB简介</h3>
+
+<p>MongoDB 是一个基于分布式文件存储的 NoSQL（非关系型数据库）的一种，由 C++ 语言编写，旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。MongoDB 支持的数据结构非常松散，是类似 json 的 bjson 格式，因此可以存储比较复杂的数据类型。MongoDB 最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引。</p>
+
+<p>MongoDB 没有关系型数据库中行和表的概念，不过有类似的文档和集合的概念。文档是 MongoDB 最基本的单位，每个文档都会以唯一的 _id 标识，文档的属性为 key/value 的键值对形式，文档内可以嵌套另一个文档，因此可以存储比较复杂的数据类型。集合是许多文档的总和，一个数据库可以有多个集合，一个集合可以有多个文档。</p>
+
+<p>下面是一个 MongoDB 文档的示例： </p>
+
+<pre><code>{ 
+  "_id" : ObjectId( "4f7fe8432b4a1077a7c551e8" ),
+  "name" : "nswbmw",
+  "age" : 22,
+  "email" : [ "xxx@126.com", "xxx@gmail.com" ],
+  "family" : {
+    "mother" : { ... },
+    "father" : { ... },
+    "sister : {
+      "name" : "miaomiao",
+      "age" : 27,
+      "email" : "xxx@163.com",
+      "family" : {
+        "mother" : { ... },
+        "father" : { ... },
+        "brother : { ... },
+        "husband" : { ... },
+        "son" : { ... }
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>更多有关 MongoDB 的知识请参阅 《mongodb权威指南》或查阅：<a href="http://www.mongodb.org/">http://www.mongodb.org/</a></p>
+
+<h3>
+<a id="user-content-安装mongodb" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%AE%89%E8%A3%85mongodb" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装MongoDB</h3>
+
+<p>安装 MongoDB 很简单,去官网(<a href="http://www.mongodb.org/downloads)%E4%B8%8B%E8%BD%BD%E5%AF%B9%E5%BA%94%E7%B3%BB%E7%BB%9F%E7%9A%84">http://www.mongodb.org/downloads)下载对应系统的</a> MongoDB 压缩包即可。解压后将文件夹重命名为 mongodb，并在 mongodb 文件夹里新建 blog 文件夹作为我们博客内容的存储目录。进入到 bin 目录下：运行：</p>
+
+<pre><code>mongod --dbpath ../blog/
+</code></pre>
+
+<p>以上命令的意思是:设置 blog 文件夹作为我们工程的存储目录并启动数据库。</p>
+
+<h3>
+<a id="user-content-连接mongodb" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E8%BF%9E%E6%8E%A5mongodb" aria-hidden="true"><span class="octicon octicon-link"></span></a>连接MongoDB</h3>
+
+<p>数据库虽然安装并启动成功了，但我们需要连接数据库后才能使用数据库。怎么才能在 Node.js 中使用 MongoDB 呢？我们使用官方提供的 node-mongodb-native 驱动模块，打开 package.json，在 dependencies 中添加一行： </p>
+
+<pre><code>"mongodb": “1.4.15"
+</code></pre>
+
+<p>然后运行 <code>npm install</code> 更新依赖的模块，稍等片刻后 mongodb 模块就下载并安装完成了。  </p>
+
+<p>接下来在工程的根目录中创建 settings.js 文件，用于保存该博客工程的配置信息，比如数据库的连接信息。我们将数据库命名为 blog，因为数据库服务器在本地，所以 settings.js 文件的内容如下：</p>
+
+<pre><code>module.exports = { 
+  cookieSecret: 'myblog', 
+  db: 'blog', 
+  host: 'localhost',
+  port: 27017
+}; 
+</code></pre>
+
+<p>其中 db 是数据库的名称，host 是数据库的地址，port是数据库的端口号，cookieSecret 用于 Cookie 加密与数据库无关，我们留作后用。</p>
+
+<p>接下来在根目录下新建 models 文件夹，并在 models 文件夹下新建 db.js ，添加如下代码：</p>
+
+<pre><code>    var settings = require('../settings'),
+        Db = require('mongodb').Db,
+        Connection = require('mongodb').Connection,
+        Server = require('mongodb').Server;
+    module.exports = new Db(settings.db, new Server(settings.host, settings.port),
+ {safe: true});
+</code></pre>
+
+<p>其中通过 <code>new Db(settings.db, new Server(settings.host, settings.port), {safe: true});</code> 设置数据库名、数据库地址和数据库端口创建了一个数据库连接实例，并通过 <code>module.exports</code> 导出该实例。这样，我们就可以通过 require 这个文件来对数据库进行读写了。</p>
+
+<p>打开 app.js，在 <code>var routes = require('./routes/index');</code> 下添加：</p>
+
+<pre><code>var settings = require('./settings');
+</code></pre>
+
+<h3>
+<a id="user-content-会话支持" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E4%BC%9A%E8%AF%9D%E6%94%AF%E6%8C%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>会话支持</h3>
+
+<blockquote>
+<p>会话是一种持久的网络协议，用于完成服务器和客户端之间的一些交互行为。会话是一个比连接粒度更大的概念， 一次会话可能包含多次连接，每次连接都被认为是会话的一次操作。在网络应用开发中，有必要实现会话以帮助用户交互。例如网上购物的场景，用户浏览了多个页面，购买了一些物品，这些请求在多次连接中完成。许多应用层网络协议都是由会话支持的，如 FTP、Telnet 等，而 HTTP 协议是无状态的，本身不支持会话，因此在没有额外手段的帮助下，前面场景中服务器不知道用户购买了什么。 </p>
+
+<p>为了在无状态的 HTTP 协议之上实现会话，Cookie 诞生了。Cookie 是一些存储在客户端的信息，每次连接的时候由浏览器向服务器递交，服务器也向浏览器发起存储 Cookie 的请求，依靠这样的手段服务器可以识别客户端。我们通常意义上的 HTTP 会话功能就是这样实现的。具体来说，浏览器首次向服务器发起请求时，服务器生成一个唯一标识符并发送给客户端浏览器，浏览器将这个唯一标识符存储在 Cookie 中，以后每次再发起请求，客户端浏览器都会向服务器传送这个唯一标识符，服务器通过这个唯一标识符来识别用户。 对于开发者来说，我们无须关心浏览器端的存储，需要关注的仅仅是如何通过这个唯一标识符来识别用户。很多服务端脚本语言都有会话功能，如 PHP，把每个唯一标识符存储到文件中。</p>
+
+<p align="right">——《Node.js开发指南》</p> 
+</blockquote>
+
+<p>express 也提供了会话中间件，默认情况下是把用户信息存储在内存中，但我们既然已经有了 MongoDB，不妨把会话信息存储在数据库中，便于持久维护。为了使用这一功能，我们需要借助 express-session 和 connect-mongo 这两个第三方中间件，在 package.json 中添加： </p>
+
+<pre><code>"express-session": “1.9.1",
+"connect-mongo": “0.4.1"
+</code></pre>
+
+<p>运行npm install安装模块,打开app.js，添加以下代码：</p>
+
+<pre><code>var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
+app.use(session({
+  secret: settings.cookieSecret,
+  key: settings.db,//cookie name
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+  store: new MongoStore({
+    db: settings.db,
+    host: settings.host,
+    port: settings.port
+  })
+}));
+</code></pre>
+
+<p>使用 express-session 和 connect-mongo 模块实现了将会化信息存储到mongoldb中。secret 用来防止篡改 cookie，key 的值为 cookie 的名字，通过设置 cookie 的 maxAge 值设定 cookie 的生存期，这里我们设置 cookie 的生存期为 30 天，设置它的 store 参数为 MongoStore 实例，把会话信息存储到数据库中，以避免丢失。在后面的小节中，我们可以通过 req.session 获取当前用户的会话对象，获取用户的相关信息。</p>
+
+<h2>
+<a id="user-content-注册和登陆" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E6%B3%A8%E5%86%8C%E5%92%8C%E7%99%BB%E9%99%86" aria-hidden="true"><span class="octicon octicon-link"></span></a>注册和登陆</h2>
+
+<p>我们已经准备好了数据库访问和会话的相关信息，接下来我们完成用户注册和登录功能。</p>
+
+<h3>
+<a id="user-content-页面设计" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E9%A1%B5%E9%9D%A2%E8%AE%BE%E8%AE%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面设计</h3>
+
+<p>首先我们来完成主页、登录页和注册页的页面设计。</p>
+
+<p>修改 views/index.ejs 如下：  </p>
+
+<pre><code>&lt;%- include header %&gt;
+这是主页
+&lt;%- include footer %&gt;
+</code></pre>
+
+<p>在 views 文件夹下新建 header.ejs，添加如下代码：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;Blog&lt;/title&gt;
+&lt;link rel="stylesheet" href="/stylesheets/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;header&gt;
+&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav&gt;
+&lt;span&gt;&lt;a title="主页" href="/"&gt;home&lt;/a&gt;&lt;/span&gt;
+&lt;span&gt;&lt;a title="登录" href="/login"&gt;login&lt;/a&gt;&lt;/span&gt;
+&lt;span&gt;&lt;a title="注册" href="/reg"&gt;register&lt;/a&gt;&lt;/span&gt;
+&lt;/nav&gt;
+
+&lt;article&gt;
+</code></pre>
+
+<p>新建 footer.ejs，添加如下代码：</p>
+
+<pre><code>&lt;/article&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>修改 public/stylesheets/style.css 如下：</p>
+
+<pre><code>/* inspired by http://yihui.name/cn/ */
+*{padding:0;margin:0;}
+body{width:600px;margin:2em auto;padding:0 2em;font-size:14px;font-family:"Microsoft YaHei";}
+p{line-height:24px;margin:1em 0;}
+header{padding:.5em 0;border-bottom:1px solid #cccccc;}
+nav{float:left;font-family:"Microsoft YaHei";font-size:1.1em;text-transform:uppercase;margin-left:-12em;width:9em;text-align:right;}
+nav a{display:block;text-decoration:none;padding:.7em 1em;color:#000000;}
+nav a:hover{background-color:#ff0000;color:#f9f9f9;-webkit-transition:color .2s linear;}
+article{font-size:16px;padding-top:.5em;}
+article a{color:#dd0000;text-decoration:none;}
+article a:hover{color:#333333;text-decoration:underline;}
+.info{font-size:14px;}
+</code></pre>
+
+<p>运行 app ，主页显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.6.jpg" alt=""></p>
+
+<p>接下来在 views 文件夹下新建 login.ejs，内容如下：</p>
+
+<pre><code>&lt;%- include header %&gt;
+&lt;form method="post"&gt;
+  用户名：&lt;input type="text" name="name"/&gt;&lt;br /&gt;
+  密码：  &lt;input type="password" name="password"/&gt;&lt;br /&gt;
+         &lt;input type="submit" value="登录"/&gt;
+&lt;/form&gt;
+&lt;%- include footer %&gt;
+</code></pre>
+
+<p>登录页面显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.7.jpg" alt=""></p>
+
+<p>在 views 文件夹下新建 reg.ejs，内容如下：</p>
+
+<pre><code>&lt;%- include header %&gt;
+&lt;form method="post"&gt;
+  用户名：  &lt;input type="text" name="name"/&gt;&lt;br /&gt;
+  密码：    &lt;input type="password" name="password"/&gt;&lt;br /&gt;
+  确认密码：&lt;input type="password" name="password-repeat"/&gt;&lt;br /&gt;
+  邮箱：    &lt;input type="email" name="email"/&gt;&lt;br /&gt;
+           &lt;input type="submit" value="注册"/&gt;
+&lt;/form&gt;
+&lt;%- include footer %&gt;
+</code></pre>
+
+<p>注册页面显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.8.jpg" alt=""></p>
+
+<p>至此，未登录时的主页、注册页、登录页都已经完成。</p>
+
+<p>现在，启动我们的博客看看吧。</p>
+
+<p><strong>注意</strong>：每次我们更新代码后，都需要手动停止并重启应用，使用 supervisor 模块可以解决这个问题，每当我们保存修改的文件时，supervisor 都会自动帮我们重启应用。通过：</p>
+
+<pre><code>$ npm install -g supervisor
+</code></pre>
+
+<p>安装 supervisor 。使用 supervisor 命令启动 app.js：</p>
+
+<pre><code>$ supervisor app
+</code></pre>
+
+<h3>
+<a id="user-content-页面通知" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E9%A1%B5%E9%9D%A2%E9%80%9A%E7%9F%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面通知</h3>
+
+<p>接下来我们实现用户的注册和登陆，在这之前我们需要引入 flash 模块来实现页面通知（即成功与错误信息的显示）的功能。  </p>
+
+<p><strong>什么是 flash?</strong></p>
+
+<p>我们所说的 flash 即 connect-flash 模块（<a href="https://github.com/jaredhanson/connect-flash">https://github.com/jaredhanson/connect-flash</a>），flash 是一个在 session 中用于存储信息的特定区域。信息写入 flash ，下一次显示完毕后即被清除。典型的应用是结合重定向的功能，确保信息是提供给下一个被渲染的页面。</p>
+
+<p>在 package.json 添加一行代码：</p>
+
+<pre><code>"connect-flash": “0.1.1"    
+</code></pre>
+
+<p>然后 <code>npm install</code> 安装 connect-flash 模块。修改 app.js ，在 <code>var settings = require('./settings');</code> 后添加：</p>
+
+<pre><code>var flash = require('connect-flash');
+</code></pre>
+
+<p>在 <code>app.set('view engine', 'ejs');</code> 后添加：</p>
+
+<pre><code>app.use(flash());
+</code></pre>
+
+<p>现在我们就可以使用 flash 功能了。</p>
+
+<h3>
+<a id="user-content-注册响应" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E6%B3%A8%E5%86%8C%E5%93%8D%E5%BA%94" aria-hidden="true"><span class="octicon octicon-link"></span></a>注册响应</h3>
+
+<p>前面我们已经完成了注册页，当然现在点击注册是没有效果的，因为我们还没有实现处理 POST 请求的功能，下面就来实现它。</p>
+
+<p>在 models 文件夹下新建 user.js，添加如下代码：</p>
+
+<pre><code>var mongodb = require('./db');
+
+function User(user) {
+  this.name = user.name;
+  this.password = user.password;
+  this.email = user.email;
+};
+
+module.exports = User;
+
+//存储用户信息
+User.prototype.save = function(callback) {
+  //要存入数据库的用户文档
+  var user = {
+      name: this.name,
+      password: this.password,
+      email: this.email
+  };
+  //打开数据库
+  mongodb.open(function (err, db) {
+    if (err) {
+      return callback(err);//错误，返回 err 信息
+    }
+    //读取 users 集合
+    db.collection('users', function (err, collection) {
+      if (err) {
+        mongodb.close();
+        return callback(err);//错误，返回 err 信息
+      }
+      //将用户数据插入 users 集合
+      collection.insert(user, {
+        safe: true
+      }, function (err, user) {
+        mongodb.close();
+        if (err) {
+          return callback(err);//错误，返回 err 信息
+        }
+        callback(null, user[0]);//成功！err 为 null，并返回存储后的用户文档
+      });
+    });
+  });
+};
+
+//读取用户信息
+User.get = function(name, callback) {
+  //打开数据库
+  mongodb.open(function (err, db) {
+    if (err) {
+      return callback(err);//错误，返回 err 信息
+    }
+    //读取 users 集合
+    db.collection('users', function (err, collection) {
+      if (err) {
+        mongodb.close();
+        return callback(err);//错误，返回 err 信息
+      }
+      //查找用户名（name键）值为 name 一个文档
+      collection.findOne({
+        name: name
+      }, function (err, user) {
+        mongodb.close();
+        if (err) {
+          return callback(err);//失败！返回 err 信息
+        }
+        callback(null, user);//成功！返回查询的用户信息
+      });
+    });
+  });
+};
+</code></pre>
+
+<p>我们通过 <code>User.prototype.save</code> 实现了用户信息的存储，通过 <code>User.get</code> 实现了用户信息的读取。</p>
+
+<p>打开 index.js ，在最前面添加如下代码：  </p>
+
+<pre><code>var crypto = require('crypto'),
+    User = require('../models/user.js');
+</code></pre>
+
+<p>通过 <code>require()</code> 引入 crypto 模块和 user.js 用户模型文件，crypto 是 Node.js 的一个核心模块，我们用它生成散列值来加密密码。  </p>
+
+<p>修改 index.js 中 <code>app.post('/reg')</code> 如下：</p>
+
+<pre><code>app.post('/reg', function (req, res) {
+  var name = req.body.name,
+      password = req.body.password,
+      password_re = req.body['password-repeat'];
+  //检验用户两次输入的密码是否一致
+  if (password_re != password) {
+    req.flash('error', '两次输入的密码不一致!'); 
+    return res.redirect('/reg');//返回注册页
+  }
+  //生成密码的 md5 值
+  var md5 = crypto.createHash('md5'),
+      password = md5.update(req.body.password).digest('hex');
+  var newUser = new User({
+      name: name,
+      password: password,
+      email: req.body.email
+  });
+  //检查用户名是否已经存在 
+  User.get(newUser.name, function (err, user) {
+    if (err) {
+      req.flash('error', err);
+      return res.redirect('/');
+    }
+    if (user) {
+      req.flash('error', '用户已存在!');
+      return res.redirect('/reg');//返回注册页
+    }
+    //如果不存在则新增用户
+    newUser.save(function (err, user) {
+      if (err) {
+        req.flash('error', err);
+        return res.redirect('/reg');//注册失败返回主册页
+      }
+      req.session.user = user;//用户信息存入 session
+      req.flash('success', '注册成功!');
+      res.redirect('/');//注册成功后返回主页
+    });
+  });
+});
+</code></pre>
+
+<p><strong>注意</strong>：我们把用户信息存储在了 session 里，以后就可以通过 req.session.user 读取用户信息。</p>
+
+<ul class="task-list">
+<li>
+<strong>req.body</strong>： 就是 POST 请求信息解析过后的对象，例如我们要访问 POST 来的表单内的 name="password" 域的值，只需访问 req.body['password'] 或 req.body.password 即可。</li>
+<li>
+<strong>res.redirect</strong>： 重定向功能，实现了页面的跳转，更多关于 res.redirect 的信息请查阅：<a href="http://expressjs.com/api.html#res.redirect">http://expressjs.com/api.html#res.redirect</a> 。</li>
+<li>
+<strong>User</strong>：在前面的代码中，我们直接使用了 User 对象。User 是一个描述数据的对象，即 MVC 
+架构中的模型。前面我们使用了许多视图和控制器，这是第一次接触到模型。与视图和控制器不同，模型是真正与数据打交道的工具，没有模型，网站就只是一个外壳，不能发挥真实的作用，因此它是框架中最根本的部分。</li>
+</ul>
+
+<p>现在，启动应用，在浏览器输入 localhost:3000 注册试试吧！注册成功后显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.11.jpg" alt=""></p>
+
+<p>这样我们并不知道是否注册成功，我们查看数据库中是否存入了用户的信息，打开一个命令行切换到 mongodb/bin/ （保证数据库已打开的前提下），输入：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.12.jpg" alt=""></p>
+
+<p>可以看到，用户信息已经成功存入数据库。</p>
+
+<p>接下来我们实现当注册成功返回主页时，左侧导航显示 HOME 、POST 、LOGOUT ，右侧显示 <strong>注册成功！</strong> 字样，即添加 flash 的页面通知功能。</p>
+
+<p>修改 header.ejs，将 <code>&lt;nav&gt;&lt;/nav&gt;</code> 修改如下：</p>
+
+<pre><code>&lt;nav&gt;
+&lt;span&gt;&lt;a title="主页" href="/"&gt;home&lt;/a&gt;&lt;/span&gt;
+&lt;% if (user) { %&gt;
+  &lt;span&gt;&lt;a title="发表" href="/post"&gt;post&lt;/a&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;a title="登出" href="/logout"&gt;logout&lt;/a&gt;&lt;/span&gt;
+&lt;% } else { %&gt;
+  &lt;span&gt;&lt;a title="登录" href="/login"&gt;login&lt;/a&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;a title="注册" href="/reg"&gt;register&lt;/a&gt;&lt;/span&gt;
+&lt;% } %&gt;
+&lt;/nav&gt;
+</code></pre>
+
+<p>在 <code>&lt;article&gt;</code> 后添加如下代码：</p>
+
+<pre><code>&lt;% if (success) { %&gt;
+  &lt;div&gt;&lt;%= success %&gt;&lt;/div&gt;
+&lt;% } %&gt;
+&lt;% if (error) { %&gt;
+  &lt;div&gt;&lt;%= error %&gt; &lt;/div&gt;
+&lt;% } %&gt;
+</code></pre>
+
+<p>修改 index.js ，将 <code>app.get('/')</code> 修改如下：</p>
+
+<pre><code>app.get('/', function (req, res) {
+  res.render('index', {
+    title: '主页',
+    user: req.session.user,
+    success: req.flash('success').toString(),
+    error: req.flash('error').toString()
+  });
+});
+</code></pre>
+
+<p>将 <code>app.get('reg')</code> 修改如下：</p>
+
+<pre><code>app.get('/reg', function (req, res) {
+  res.render('reg', {
+    title: '注册',
+    user: req.session.user,
+    success: req.flash('success').toString(),
+    error: req.flash('error').toString()
+  });
+});
+</code></pre>
+
+<p>现在运行我们的博客，注册成功后显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.13.jpg" alt=""></p>
+
+<p>我们通过对 session 的使用实现了对用户状态的检测，再根据不同的用户状态显示不同的导航信息。<br>
+简单解释一下流程：用户在注册成功后，把用户信息存入 session ，页面跳转到主页显示 <strong>注册成功！</strong> 的字样。同时把 session 中的用户信息赋给变量 user ，在渲染 index.ejs 文件时通过检测 user 判断用户是否在线，根据用户状态的不同显示不同的导航信息。</p>
+
+<p><code>success: req.flash('success').toString()</code> 的意思是将成功的信息赋值给变量 <code>success</code>， <code>error: req.flash('error').toString()</code> 的意思是将错误的信息赋值给变量  <code>error</code> ，然后我们在渲染 ejs 模版文件时传递这两个变量来进行检测并显示通知。</p>
+
+<h3>
+<a id="user-content-登录与登出响应" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E7%99%BB%E5%BD%95%E4%B8%8E%E7%99%BB%E5%87%BA%E5%93%8D%E5%BA%94" aria-hidden="true"><span class="octicon octicon-link"></span></a>登录与登出响应</h3>
+
+<p>现在我们来实现用户登录的功能。</p>
+
+<p>打开 index.js ，将 <code>app.post('/login')</code> 修改如下：</p>
+
+<pre><code>app.post('/login', function (req, res) {
+  //生成密码的 md5 值
+  var md5 = crypto.createHash('md5'),
+      password = md5.update(req.body.password).digest('hex');
+  //检查用户是否存在
+  User.get(req.body.name, function (err, user) {
+    if (!user) {
+      req.flash('error', '用户不存在!'); 
+      return res.redirect('/login');//用户不存在则跳转到登录页
+    }
+    //检查密码是否一致
+    if (user.password != password) {
+      req.flash('error', '密码错误!'); 
+      return res.redirect('/login');//密码错误则跳转到登录页
+    }
+    //用户名密码都匹配后，将用户信息存入 session
+    req.session.user = user;
+    req.flash('success', '登陆成功!');
+    res.redirect('/');//登陆成功后跳转到主页
+  });
+});
+</code></pre>
+
+<p>将 <code>app.get('/login')</code> 修改如下：</p>
+
+<pre><code>app.get('/login', function (req, res) {
+    res.render('login', {
+        title: '登录',
+        user: req.session.user,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()});
+});
+</code></pre>
+
+<p>(这样就不会出现 'user is not defined' 的错误了)</p>
+
+<p>接下来我们实现登出响应。修改 <code>app.get('/logout')</code> 如下：</p>
+
+<pre><code>app.get('/logout', function (req, res) {
+  req.session.user = null;
+  req.flash('success', '登出成功!');
+  res.redirect('/');//登出成功后跳转到主页
+});
+</code></pre>
+
+<p><strong>注意：</strong>通过把 req.session.user 赋值 null 丢掉 session 中用户的信息，实现用户的退出。</p>
+
+<p>登录后页面显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.14.jpg" alt=""></p>
+
+<p>登出后页面显示如下：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.15.jpg" alt=""></p>
+
+<p>至此，我们实现了用户注册与登陆的功能，并且根据用户登录状态显示不同的导航。</p>
+
+<h3>
+<a id="user-content-页面权限控制" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E9%A1%B5%E9%9D%A2%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面权限控制</h3>
+
+<p>我们虽然已经完成了用户注册与登陆的功能，但并不能阻止比如已经登陆的用户访问 localhost:3000/reg 页面，读者可亲自尝试下。为此，我们需要为页面设置访问权限。即注册和登陆页面应该阻止已登陆的用户访问，登出及后面我们将要实现的发表页只对已登录的用户开放。如何实现页面权限的控制呢？我们可以把用户登录状态的检查放到路由中间件中，在每个路径前增加路由中间件，即可实现页面权限控制。我们添加 <code>checkNotLogin</code> 和 <code>checkLogin</code> 函数来实现这个功能。</p>
+
+<pre><code>function checkLogin(req, res, next) {
+  if (!req.session.user) {
+    req.flash('error', '未登录!'); 
+    res.redirect('/login');
+  }
+  next();
+}
+
+function checkNotLogin(req, res, next) {
+  if (req.session.user) {
+    req.flash('error', '已登录!'); 
+    res.redirect('back');//返回之前的页面
+  }
+  next();
+}
+</code></pre>
+
+<p><code>checkNotLogin</code> 和 <code>checkLogin</code> 用来检测是否登陆，并通过 <code>next()</code> 转移控制权，检测到未登录则跳转到登录页，检测到已登录则跳转到前一个页面。</p>
+
+<p>最终 index.js 代码如下：</p>
+
+<pre><code>var crypto = require('crypto'),
+    User = require('../models/user.js');
+
+module.exports = function(app) {
+  app.get('/', function (req, res) {
+    res.render('index', {
+      title: '主页',
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+
+  app.get('/reg', checkNotLogin);
+  app.get('/reg', function (req, res) {
+    res.render('reg', {
+      title: '注册',
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+
+  app.post('/reg', checkNotLogin);
+  app.post('/reg', function (req, res) {
+    var name = req.body.name,
+        password = req.body.password,
+        password_re = req.body['password-repeat'];
+    if (password_re != password) {
+      req.flash('error', '两次输入的密码不一致!'); 
+      return res.redirect('/reg');
+    }
+    var md5 = crypto.createHash('md5'),
+        password = md5.update(req.body.password).digest('hex');
+    var newUser = new User({
+        name: name,
+        password: password,
+        email: req.body.email
+    });
+    User.get(newUser.name, function (err, user) {
+      if (err) {
+        req.flash('error', err);
+        return res.redirect('/');
+      }
+      if (user) {
+        req.flash('error', '用户已存在!');
+        return res.redirect('/reg');
+      }
+      newUser.save(function (err, user) {
+        if (err) {
+          req.flash('error', err);
+          return res.redirect('/reg');
+        }
+        req.session.user = user;
+        req.flash('success', '注册成功!');
+        res.redirect('/');
+      });
+    });
+  });
+
+  app.get('/login', checkNotLogin);
+  app.get('/login', function (req, res) {
+    res.render('login', {
+      title: '登录',
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    }); 
+  });
+
+  app.post('/login', checkNotLogin);
+  app.post('/login', function (req, res) {
+    var md5 = crypto.createHash('md5'),
+        password = md5.update(req.body.password).digest('hex');
+    User.get(req.body.name, function (err, user) {
+      if (!user) {
+        req.flash('error', '用户不存在!'); 
+        return res.redirect('/login');
+      }
+      if (user.password != password) {
+        req.flash('error', '密码错误!'); 
+        return res.redirect('/login');
+      }
+      req.session.user = user;
+      req.flash('success', '登陆成功!');
+      res.redirect('/');
+    });
+  });
+
+  app.get('/post', checkLogin);
+  app.get('/post', function (req, res) {
+    res.render('post', {
+      title: '发表',
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+
+  app.post('/post', checkLogin);
+  app.post('/post', function (req, res) {
+  });
+
+  app.get('/logout', checkLogin);
+  app.get('/logout', function (req, res) {
+    req.session.user = null;
+    req.flash('success', '登出成功!');
+    res.redirect('/');
+  });
+
+  function checkLogin(req, res, next) {
+    if (!req.session.user) {
+      req.flash('error', '未登录!'); 
+      res.redirect('/login');
+    }
+    next();
+  }
+
+  function checkNotLogin(req, res, next) {
+    if (req.session.user) {
+      req.flash('error', '已登录!'); 
+      res.redirect('back');
+    }
+    next();
+  }
+};
+</code></pre>
+
+<p><strong>注意：</strong>为了维护用户状态和 flash 的通知功能，我们给每个 ejs 模版文件传入了以下三个值：</p>
+
+<pre><code>user: req.session.user,
+success: req.flash('success').toString(),
+error: req.flash('error').toString()
+</code></pre>
+
+<h2>
+<a id="user-content-发表文章" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%8F%91%E8%A1%A8%E6%96%87%E7%AB%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>发表文章</h2>
+
+<p>现在我们的博客已经具备了用户注册、登陆、页面权限控制的功能，接下来我们完成博客最核心的部分——发表文章。在这一节，我们将会实现发表文章的功能，完成整个博客的设计。</p>
+
+<h3>
+<a id="user-content-页面设计-1" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E9%A1%B5%E9%9D%A2%E8%AE%BE%E8%AE%A1-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面设计</h3>
+
+<p>我们先来完成发表页的页面设计。在 views 文件夹下新建 post.ejs ，添加如下代码：</p>
+
+<pre><code>&lt;%- include header %&gt;
+&lt;form method="post"&gt;
+  标题：&lt;br /&gt;
+  &lt;input type="text" name="title" /&gt;&lt;br /&gt;
+  正文：&lt;br /&gt;
+  &lt;textarea name="post" rows="20" cols="100"&gt;&lt;/textarea&gt;&lt;br /&gt;
+  &lt;input type="submit" value="发表" /&gt;
+&lt;/form&gt;
+&lt;%- include footer %&gt;
+</code></pre>
+
+<h3>
+<a id="user-content-文章模型" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E6%96%87%E7%AB%A0%E6%A8%A1%E5%9E%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>文章模型</h3>
+
+<p>仿照用户模型，我们将文章模型命名为 Post 对象，它拥有与 User 相似的接口，分别是 <code>Post.get</code> 和 <code>Post.prototype.save</code> 。<code>Post.get</code> 的功能是从数据库中获取文章，可以按指定用户获取，也可以获取全部的内容。<code>Post.prototype.save</code> 是 Post 对象原型的方法，用来将文章保存到数据库。<br>
+在 models 文件夹下新建 post.js ，添加如下代码：</p>
+
+<pre><code>var mongodb = require('./db');
+
+function Post(name, title, post) {
+  this.name = name;
+  this.title = title;
+  this.post = post;
+}
+
+module.exports = Post;
+
+//存储一篇文章及其相关信息
+Post.prototype.save = function(callback) {
+  var date = new Date();
+  //存储各种时间格式，方便以后扩展
+  var time = {
+      date: date,
+      year : date.getFullYear(),
+      month : date.getFullYear() + "-" + (date.getMonth() + 1),
+      day : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+      minute : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + 
+      date.getHours() + ":" + (date.getMinutes() &lt; 10 ? '0' + date.getMinutes() : date.getMinutes()) 
+  }
+  //要存入数据库的文档
+  var post = {
+      name: this.name,
+      time: time,
+      title: this.title,
+      post: this.post
+  };
+  //打开数据库
+  mongodb.open(function (err, db) {
+    if (err) {
+      return callback(err);
+    }
+    //读取 posts 集合
+    db.collection('posts', function (err, collection) {
+      if (err) {
+        mongodb.close();
+        return callback(err);
+      }
+      //将文档插入 posts 集合
+      collection.insert(post, {
+        safe: true
+      }, function (err) {
+        mongodb.close();
+        if (err) {
+          return callback(err);//失败！返回 err
+        }
+        callback(null);//返回 err 为 null
+      });
+    });
+  });
+};
+
+//读取文章及其相关信息
+Post.get = function(name, callback) {
+  //打开数据库
+  mongodb.open(function (err, db) {
+    if (err) {
+      return callback(err);
+    }
+    //读取 posts 集合
+    db.collection('posts', function(err, collection) {
+      if (err) {
+        mongodb.close();
+        return callback(err);
+      }
+      var query = {};
+      if (name) {
+        query.name = name;
+      }
+      //根据 query 对象查询文章
+      collection.find(query).sort({
+        time: -1
+      }).toArray(function (err, docs) {
+        mongodb.close();
+        if (err) {
+          return callback(err);//失败！返回 err
+        }
+        callback(null, docs);//成功！以数组形式返回查询的结果
+      });
+    });
+  });
+};
+</code></pre>
+
+<h3>
+<a id="user-content-发表响应" class="anchor" href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#%E5%8F%91%E8%A1%A8%E5%93%8D%E5%BA%94" aria-hidden="true"><span class="octicon octicon-link"></span></a>发表响应</h3>
+
+<p>接下来我们给发表文章注册响应，打开 index.js ，在 <code>User = require('../models/user.js')</code> 后添加一行代码：</p>
+
+<pre><code>,Post = require('../models/post.js');
+</code></pre>
+
+<p>修改 <code>app.post('/post')</code> 如下：</p>
+
+<pre><code>app.post('/post', checkLogin);
+app.post('/post', function (req, res) {
+  var currentUser = req.session.user,
+      post = new Post(currentUser.name, req.body.title, req.body.post);
+  post.save(function (err) {
+    if (err) {
+      req.flash('error', err); 
+      return res.redirect('/');
+    }
+    req.flash('success', '发布成功!');
+    res.redirect('/');//发表成功跳转到主页
+  });
+});
+</code></pre>
+
+<p>最后，我们修改 index.ejs ，让主页右侧显示发表过的文章及其相关信息。</p>
+
+<p>打开 index.ejs ，修改如下：</p>
+
+<pre><code>&lt;%- include header %&gt;
+&lt;% posts.forEach(function (post, index) { %&gt;
+  &lt;p&gt;&lt;h2&gt;&lt;a href="#"&gt;&lt;%= post.title %&gt;&lt;/a&gt;&lt;/h2&gt;&lt;/p&gt;
+  &lt;p class="info"&gt;
+    作者：&lt;a href="#"&gt;&lt;%= post.name %&gt;&lt;/a&gt; | 
+    日期：&lt;%= post.time.minute %&gt;
+  &lt;/p&gt;
+  &lt;p&gt;&lt;%- post.post %&gt;&lt;/p&gt;
+&lt;% }) %&gt;
+&lt;%- include footer %&gt;
+</code></pre>
+
+<p>打开 index.js ，修改 <code>app.get('/')</code> 如下：</p>
+
+<pre><code>app.get('/', function (req, res) {
+  Post.get(null, function (err, posts) {
+    if (err) {
+      posts = [];
+    } 
+    res.render('index', {
+      title: '主页',
+      user: req.session.user,
+      posts: posts,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+});
+</code></pre>
+
+<p>至此，我们的博客就建成了。</p>
+
+<p>启动我们的博客，发表一篇博文，如图所示:</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.16.jpg" alt=""></p>
+
+<p>此时，查看一下数据库，如图所示：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.17.jpg" alt=""></p>
+
+<p><strong>Tips</strong>：Robomongo 是一个基于 Shell 的跨平台开源 MongoDB 管理工具。嵌入了 JavaScript 引擎和 MongoDB mongo 。只要你会使用 mongo shell ，你就会使用 Robomongo，它提供语法高亮、自动完成、差别视图等。</p>
+
+<p>下载安装 Robomongo后，运行我们的博客，注册一个用户并发表几篇文章，初次打开 Robomongo ，点击 <strong>Create</strong> 创建一个名为 blog （名字自定）的数据库链接（默认监听 localhost:27017），点击 <strong>Connect</strong> 就连接到数据库了。如图所示：</p>
+
+<p><img src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/1.18.jpg" alt=""></p>
+
+    </div>
+
+  <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+  </div>
+</div>
+</div>
+
+
+        </div>
+
+      </div><!-- /.repo-container -->
+      <div class="modal-backdrop"></div>
+    </div><!-- /.container -->
+  </div><!-- /.site -->
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com/" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+</a>
+    <ul class="site-footer-links">
+      <li>© 2015 <span title="0.10713s from github-fe136-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-suggester-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="fullscreen-contents js-fullscreen-contents" placeholder=""></textarea>
+      <div class="suggester-container">
+        <div class="suggester fullscreen-suggester js-suggester js-navigation-container"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" class="exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w" aria-label="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" class="theme-switcher js-theme-switcher tooltipped tooltipped-w" aria-label="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <a href="https://github.com/nswbmw/N-blog/wiki/%E7%AC%AC1%E7%AB%A0--%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%9A%E5%AE%A2#" class="octicon octicon-x flash-close js-ajax-error-dismiss" aria-label="Dismiss error"></a>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/frameworks-2c8ae50712a47d2b83d740cb875d55cdbbb3fdbccf303951cc6b7e63731e0c38.js"></script>
+      <script async="async" crossorigin="anonymous" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/github-466d612e02e6a4bb2756fa6794339ebd7e5d6d5aabdabe235caa7cfb3ef44d86.js"></script>
+      
+        <script crossorigin="anonymous" src="./第1章 一个简单的博客 · nswbmw N-blog Wiki_files/wiki-e0b89bc5cedb457b5a8aebc5de6e074fdcfdaf3125af589c90e87bddd0cb2af3.js"></script>
+
+
+  
+
+
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container" style="position: absolute; left: 0px; top: -9999px; width: 1px; height: 1px; z-index: 999999999;"><object id="global-zeroclipboard-flash-bridge" name="global-zeroclipboard-flash-bridge" width="100%" height="100%" type="application/x-shockwave-flash" data="https://assets-cdn.github.com/flash/ZeroClipboard.v2.1.6.swf"><param name="allowScriptAccess" value="always"><param name="allowNetworking" value="all"><param name="menu" value="false"><param name="wmode" value="transparent"><param name="flashvars" value="trustedOrigins=github.com%2C%2F%2Fgithub.com%2Chttps%3A%2F%2Fgithub.com&amp;swfObjectId=global-zeroclipboard-flash-bridge"></object></div></body></html>
