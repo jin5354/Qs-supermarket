@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 80px 50px 50px 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -31,4 +31,10 @@ body {
 }
 .form-signin input{
   margin-bottom: 10px;
+}
+
+/* flash alert */
+div.alert{
+	width: 400px;
+	margin: 20px auto 0 auto;
 }
