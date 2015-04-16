@@ -1,0 +1,36 @@
+<%- include header %>
+    <div class="container">
+      <form class="form-commodity" method="post">
+        <h3 class="form-commodity-heading">商品信息上传</h3>
+        <div class="input-group">
+          <span class="input-group-addon" id="commodity-name">商品名称</span>
+          <input type="text" class="form-control" name="name" aria-describedby="commodity-name" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="commodity-price">定价</span>
+          <input type="text" class="form-control" name="price" aria-describedby="commodity-price" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="commodity-oldPrice">原价</span>
+          <input type="text" class="form-control" name="oldPrice" aria-describedby="commodity-oldPrice" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="commodity-cate">分类</span>
+          <input type="text" class="form-control" name="cate" aria-describedby="commodity-cate" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="commodity-inventory">库存量</span>
+          <input type="text" class="form-control" name="inventory" aria-describedby="commodity-inventory" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="commodity-fineness">成色</span>
+          <input type="text" class="form-control" name="fineness" aria-describedby="commodity-fineness" required>
+        </div>
+        <p>更多描述</p>
+        <textarea name="description" rows="10" style="width:100%"></textarea>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">发布商品</button>
+      </form>
+    </div>
+  </body>
+  <script src="/javascripts/global.js"></script>
+</html>

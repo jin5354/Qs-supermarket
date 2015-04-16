@@ -1,11 +1,20 @@
 var express = require('express');
 var crypto = require('crypto'),
-    User = require('../models/user.js');
+    User = require('../models/user.js'),
+    Commodity = require('../models/commodity.js');
 
 module.exports = function(app){
 
 	app.get('/', function(req, res, next) {
 		/* GET home page. */
+		Commodity.getByQuery('createTime', 1, 12, function(err, docs){
+			if(err){
+				req.flash('error', err);
+				return res.redirect('/');
+			}
+			console.log(docs.length);
+		});
+
 		res.render('index', {
 			title: '首页',
 			user: req.session.user,
@@ -128,6 +137,42 @@ module.exports = function(app){
 			error: req.flash('error').toString()
 		});
 	})
+
+	//上传商品信息
+	app.get('/upload-commodity', checkLogin);
+	app.get('/upload-commodity', function(req, res, next){
+		res.render('upload-commodity',{
+			title:'用户中心',
+			user:req.session.user,
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+
+	app.post('/upload-commodity', checkLogin);
+	app.post('/upload-commodity', function(req, res, next){
+		var newCommodity = new Commodity({
+			owner: req.session.user.phoneNumber,
+			createTime: new Date(),
+			name: req.body.name,
+			price: req.body.price,
+			oldPrice: req.body.oldPrice,
+			inventory: req.body.inventory,
+			fineness: req.body.fineness,
+			trade: 0,
+			cate: req.body.cate,
+			description: req.body.description
+		});
+
+		newCommodity.save(function(err, commodity){
+			if(err){
+				req.flash('error', err);
+				res.redirect('/upload-commodity');
+			}
+			req.flash('success', '商品成功发布！');
+			res.redirect('/user-center');
+		});
+	});
 
 	//检查是否为登录状态，未登录则跳转登录
 	function checkLogin(req,res,next){
