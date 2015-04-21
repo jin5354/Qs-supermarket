@@ -1,4 +1,5 @@
 var mongodb = require('./db');
+var ObjectID = require('mongodb').ObjectID;
 
 function Commodity(commodity){
 	this.owner = commodity.owner;
@@ -10,13 +11,13 @@ function Commodity(commodity){
 	this.inventory = commodity.inventory;
 	this.fineness = commodity.fineness;
 	this.trade = commodity.trade;
-	this.cate = commodity.cate
+	this.cate = commodity.cate;
 }
 
 /*
 	trade: 	0 - onsale
-			1 - selling
-			2 - saleout
+			1 - saleout
+			2 - offsale
 */
 
 module.exports = Commodity;
@@ -62,7 +63,7 @@ Commodity.prototype.save = function(callback){
 }
 
 //读取商品信息
-Commodity.get = function(id,callback){
+Commodity.getOne = function(_id,callback){
 
 	//打开数据库
 	mongodb.open(function(err,db){
@@ -79,44 +80,51 @@ Commodity.get = function(id,callback){
 			}
 
 			//查找商品
-			collection.findOne({id: id},function(err,user){
+			collection.findOne({"_id": new ObjectID(_id)},function(err,commodity){
 				mongodb.close();
 				if(err){
 					return callback(err);
 				}
-				callback(null,user);
+				callback(null,commodity);
 			});
 		});
 	});
 };
 
-//按条件查询商品
-Commodity.getByQuery = function(key, order, limitNum, callback){
+
+//查询商品
+Commodity.getByQuery = function(key, value, sortKey, order, limitNum, callback){
 
 	//打开数据库
-	mongodb.open(function(err,db){
+	mongodb.open(function(err, db){
 		if(err){
 			mongodb.close();
 			return callback(err);
 		}
 
-		//读取Commodities集合
-		db.collection('commodities', function(err,collection){
+		//读取商品集合
+		db.collection('commodities', function(err, collection){
 			if(err){
 				mongodb.close();
 				return callback(err);
 			}
 
+			var oFind = {};
+			if(key){
+				oFind[key] = value;
+			}
 			var oSort = {};
-			oSort[key] = order;
+			if(sortKey){
+				oSort[sortKey] = order;
+			}
 
-			//查找商品
-			collection.find().sort(oSort).limit(limitNum).toArray(function(err, docs){
+			//获取查询结果
+			collection.find(oFind).sort(oSort).limit(limitNum).toArray(function(err, docs){
 				mongodb.close();
 				if(err){
 					return callback(err);
 				}
-				console.log('success.');
+				console.log('Commodity getByQuery success.',key, value, sortKey, order, limitNum, 'length:'+docs.length);
 				callback(null, docs);
 			});
 		});

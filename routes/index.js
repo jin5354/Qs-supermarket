@@ -7,19 +7,17 @@ module.exports = function(app){
 
 	app.get('/', function(req, res, next) {
 		/* GET home page. */
-		Commodity.getByQuery('createTime', 1, 12, function(err, docs){
+		Commodity.getByQuery(null, null, 'createTime', -1, 12, function(err, commodities){
 			if(err){
 				req.flash('error', err);
-				return res.redirect('/');
 			}
-			console.log(docs.length);
-		});
-
-		res.render('index', {
-			title: '首页',
-			user: req.session.user,
-			success: req.flash('success').toString(),
-			error: req.flash('error').toString()
+			res.render('index', {
+				title: '首页',
+				user: req.session.user,
+				commodities: commodities,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
 		});
 	});
 
@@ -172,6 +170,91 @@ module.exports = function(app){
 			req.flash('success', '商品成功发布！');
 			res.redirect('/user-center');
 		});
+	});
+
+	//取得个人商品
+	app.get('/my-commodities', checkLogin);
+	app.get('/my-commodities', function(req, res, next){
+		Commodity.getByQuery('owner', req.session.user.phoneNumber, 'createTime', -1, 12, function(err, commodities){
+			if(err){
+				req.flash('error', err);
+			}
+			res.render('my-commodities',{
+				title:'我的商品',
+				user:req.session.user,
+				commodities: commodities,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
+		});
+	});
+
+	//个人信息
+	app.get('/user-info', checkLogin);
+	app.get('/user-info', function(req, res, next){
+		res.render('user-info',{
+			title:'个人资料',
+			user:req.session.user,
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+
+	//商品详情
+	app.get('/item', function(req, res, next){
+		console.log(req.query.id);
+		Commodity.getOne(req.query.id, function(err, commodity){
+			if(err){
+				req.flash('error',err);
+			}
+			res.render('item',{
+				title: commodity.name + '-商品详情',
+				commodity: commodity,
+				user:req.session.user,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
+		});
+	});
+
+	//查看购物车
+	app.get('/cart', checkLogin);
+	app.get('/cart', function(req, res, next){
+		User.get(req.session.user.phoneNumber, function(err, user){
+			if(err){
+				req.flash('error',err);
+			}
+			var sum = 0;
+			user.cart.forEach(function(commodity, index){
+				sum+= commodity[2]*commodity[3];
+			});
+			res.render('cart',{
+				title: '我的购物车',
+				user: user,
+				sum: sum,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
+		});
+	});
+
+	//添加到购物车
+	app.post('/cart', checkLogin);
+	app.post('/cart', function(req, res, next){
+		if(req.body.num >= 0){
+			Commodity.getOne(req.query.id, function(err, commodity){
+				if(err){
+					req.flash('error',err);
+				}
+				User.add(req.session.user.phoneNumber, req.query.id, commodity.name, req.body.num, commodity.price, commodity.oldPrice, commodity.owner, function(err, user){
+					if(err){
+						req.flash('error',err);
+					}
+					req.flash('success','商品添加成功！');
+					res.redirect('back');
+				});
+			});
+		}
 	});
 
 	//检查是否为登录状态，未登录则跳转登录

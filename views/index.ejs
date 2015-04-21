@@ -1,10 +1,10 @@
 <%-include header %>
     <div class="container">
     	<div class="row">
-            <div class="col-sm-8">
+            <div class="col-xs-8">
                 <img src="images/banner.jpg" class="banner">
             </div>
-            <div class="col-sm-4">
+            <div class="col-xs-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">最新公告</div>
                     <ul class="list-group">
@@ -22,96 +22,19 @@
         </div>
         <div class="row">
             <div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
-                <div class="col-xs-2 commodity-item">
-                    <a href="#">
-                        <img src="images/nopic.png" class="img-responsive">
-                        <p class="commodity-title">测试商品</p>
-                    </a>
-                    <p><span class="new-price">￥79</span><span class="old-price">￥129</span></p>
-                </div>
+                <% commodities.forEach(function(commodity, index){
+                    %>
+                        <div class="col-xs-2 commodity-item">
+                            <a href="item?id=<%= commodity._id %>">
+                                <img src="images/nopic.png" class="img-responsive">
+                                <p class="commodity-title"><%= commodity.name %></p>
+                            </a>
+                            <p><span class="new-price">￥<%= commodity.price %></span><span class="old-price">￥<%= commodity.oldPrice %></span></p>
+                        </div>
+                    <%
+                    }) 
+                %>
             </div>
         </div>
     </div>
-  </body>
-</html>
+<%- include footer %>

@@ -1,0 +1,52 @@
+<%-include header %>
+<div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">我的购物车</h3>
+      </div>
+      <div class="panel-body">
+        <form action="post">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>商品名称</th>
+              <th>购买数量</th>
+              <th>商品定价</th>
+              <th>商品原价</th>
+              <th>总价</th>
+              <th>卖家</th>
+              <th>操作</th>
+          </thead>
+          <tbody>
+            <% user.cart.forEach(function(commodity, index){
+                %>
+                    <tr>
+                      <th scope="row"><%= index+1 %></th>
+                      <td><%= commodity[1] %></td>
+                      <td><%= commodity[2] %></td>
+                      <td><%= commodity[3] %></td>
+                      <td><%= commodity[4] %></td>
+                      <td><%= commodity[2]*commodity[3] %> 元</td>
+                      <td><%= commodity[5] %></td>
+                      <td><a class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                    </tr>
+                <%
+                })
+            %>
+          </tbody>
+        </table>
+        <p>
+            <% if(user.cart.length1!==0){
+                %>
+                    <button class="btn btn-danger" type="submit">结算</button>
+                <%
+            }
+            %>
+            <span style="float:right;">总计：<%= sum %> 元</span>
+        </p>
+        </form>
+      </div>
+    </div>
+</div>
+<%- include footer %>

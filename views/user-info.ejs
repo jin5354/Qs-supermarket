@@ -1,0 +1,29 @@
+<%- include header %>
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-body">
+    欢迎您，<%= user.nickName %>！
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-2">
+    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+      <a class="btn btn-default" type="button" href="/user-center">我的订单</a>
+      <a class="btn btn-default" type="button" href="/my-commodities">我的货物</a>
+      <a class="btn btn-warning" type="button">个人资料</a>
+    </div>
+  </div>
+  <div class="col-xs-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">个人资料</h3>
+      </div>
+      <div class="panel-body">
+        <p>用户名（短号）：<%= user.phoneNumber %> </p>
+        <p>昵称：<%= user.nickName %></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<%- include footer %>

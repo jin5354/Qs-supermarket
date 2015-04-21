@@ -5,8 +5,24 @@
           欢迎您，<%= user.nickName %>！
         </div>
       </div>
-      <a class="btn btn-danger" href="/upload-commodity">我要卖货</a>
+      <div class="row">
+        <div class="col-xs-2">
+          <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <a class="btn btn-warning" type="button">我的订单</a>
+            <a class="btn btn-default" type="button" href="/my-commodities">我的货物</a>
+            <a class="btn btn-default" type="button" href="/user-info">个人资料</a>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">我的订单</h3>
+            </div>
+            <div class="panel-body">
+              暂无订单！
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
-  <script src="/javascripts/global.js"></script>
-</html>
+<%- include footer %>

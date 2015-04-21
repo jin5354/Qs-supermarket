@@ -1,0 +1,18 @@
+<%- include header %>
+<div class="container commodity-detail">
+    <div class="row">
+        <div class="col-xs-8">
+            <form method="post" action="/cart?op=add&id=<%= commodity._id %>">
+                <h2><%= commodity.name %></h2>
+                <p>原价：<span><%= commodity.oldPrice %></span></p>
+                <p>现价：<span><%= commodity.price %></span></p>
+                <p>库存：<%= commodity.inventory %></p>
+                <p>详细描述：<%= commodity.description %></p>
+                <p>购买数量: <input type="text" style="width:40px;" value="1" name="num"></p>
+                <button class="btn btn-danger" type="submit">添加到购物车</button>
+            </form>
+        </div>
+        <div class="col-xs-3 col-xs-offset-1"></div>
+    </div>
+</div>
+<%- include footer %>
