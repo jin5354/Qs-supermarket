@@ -93,7 +93,7 @@ Commodity.getOne = function(_id,callback){
 
 
 //查询商品
-Commodity.getByQuery = function(key, value, sortKey, order, limitNum, callback){
+Commodity.getByQuery = function(oFind, sortKey, order, limitNum, callback){
 
 	//打开数据库
 	mongodb.open(function(err, db){
@@ -109,10 +109,6 @@ Commodity.getByQuery = function(key, value, sortKey, order, limitNum, callback){
 				return callback(err);
 			}
 
-			var oFind = {};
-			if(key){
-				oFind[key] = value;
-			}
 			var oSort = {};
 			if(sortKey){
 				oSort[sortKey] = order;
@@ -124,7 +120,7 @@ Commodity.getByQuery = function(key, value, sortKey, order, limitNum, callback){
 				if(err){
 					return callback(err);
 				}
-				console.log('Commodity getByQuery success.',key, value, sortKey, order, limitNum, 'length:'+docs.length);
+				console.log('Commodity getByQuery success.', oFind, sortKey, order, limitNum, 'length:'+docs.length);
 				callback(null, docs);
 			});
 		});

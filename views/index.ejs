@@ -20,20 +20,22 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div>
-                <% commodities.forEach(function(commodity, index){
+        <div class="panel panel-default">
+            <div class="panel-heading">最新上架</div>
+                <div class="row">
+                    <% commodities.forEach(function(commodity, index){
+                        %>
+                            <div class="col-xs-2 commodity-item">
+                                <a href="item?id=<%= commodity._id %>">
+                                    <img src="images/nopic.png" class="img-responsive">
+                                    <p class="commodity-title"><%= commodity.name %></p>
+                                </a>
+                                <p><span class="new-price">￥<%= commodity.price %></span><span class="old-price">￥<%= commodity.oldPrice %></span></p>
+                            </div>
+                        <%
+                        }) 
                     %>
-                        <div class="col-xs-2 commodity-item">
-                            <a href="item?id=<%= commodity._id %>">
-                                <img src="images/nopic.png" class="img-responsive">
-                                <p class="commodity-title"><%= commodity.name %></p>
-                            </a>
-                            <p><span class="new-price">￥<%= commodity.price %></span><span class="old-price">￥<%= commodity.oldPrice %></span></p>
-                        </div>
-                    <%
-                    }) 
-                %>
+                </div>
             </div>
         </div>
     </div>

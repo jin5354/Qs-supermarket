@@ -7,7 +7,7 @@ module.exports = function(app){
 
 	app.get('/', function(req, res, next) {
 		/* GET home page. */
-		Commodity.getByQuery(null, null, 'createTime', -1, 12, function(err, commodities){
+		Commodity.getByQuery({trade: 0}, 'createTime', -1, 12, function(err, commodities){
 			if(err){
 				req.flash('error', err);
 			}
@@ -175,7 +175,7 @@ module.exports = function(app){
 	//取得个人商品
 	app.get('/my-commodities', checkLogin);
 	app.get('/my-commodities', function(req, res, next){
-		Commodity.getByQuery('owner', req.session.user.phoneNumber, 'createTime', -1, 12, function(err, commodities){
+		Commodity.getByQuery({'owner': req.session.user.phoneNumber}, 'createTime', -1, 12, function(err, commodities){
 			if(err){
 				req.flash('error', err);
 			}
@@ -246,13 +246,36 @@ module.exports = function(app){
 				if(err){
 					req.flash('error',err);
 				}
-				User.add(req.session.user.phoneNumber, req.query.id, commodity.name, req.body.num, commodity.price, commodity.oldPrice, commodity.owner, function(err, user){
+				User.get(req.session.user.phoneNumber, function(err, user){
 					if(err){
 						req.flash('error',err);
 					}
-					req.flash('success','商品添加成功！');
-					res.redirect('back');
+					var index;
+					user.cart.forEach(function(e, i){
+						if(e[0]==req.query.id){index = i};
+					});
+					console.log(index);
+					if(index != undefined){
+						console.log("增加商品数量！",index,req.body.num);
+						User.changeCommodityNum(req.session.user.phoneNumber, index, Number(req.body.num), function(err, user){
+							if(err){
+								req.flash('error',err);
+							}
+							req.flash('success','商品添加成功！');
+							res.redirect('back');
+						});
+					}else{
+						console.log("增加新产品！");
+						User.addCommodity(req.session.user.phoneNumber, req.query.id, commodity.name, req.body.num, commodity.price, commodity.oldPrice, commodity.owner, function(err, user){
+							if(err){
+								req.flash('error',err);
+							}
+							req.flash('success','商品添加成功！');
+							res.redirect('back');
+						});
+					}
 				});
+				
 			});
 		}
 	});

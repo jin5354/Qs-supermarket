@@ -23,7 +23,7 @@
                 %>
                     <tr>
                       <th scope="row"><%= index+1 %></th>
-                      <td><%= commodity[1] %></td>
+                      <td><a href="/item?id=<%= commodity[0] %>"><%= commodity[1] %></a></td>
                       <td><%= commodity[2] %></td>
                       <td><%= commodity[3] %></td>
                       <td><%= commodity[4] %></td>
@@ -39,7 +39,7 @@
         <p>
             <% if(user.cart.length1!==0){
                 %>
-                    <button class="btn btn-danger" type="submit">结算</button>
+                    <button class="btn btn-danger" type="submit">提交订单</button>
                 <%
             }
             %>

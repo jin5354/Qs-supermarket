@@ -73,7 +73,7 @@ User.get = function(phoneNumber,callback){
 };
 
 //添加商品到购物车
-User.add = function(phoneNumber, _id, name, num, price, oldprice, owner, callback){
+User.addCommodity = function(phoneNumber, _id, name, num, price, oldprice, owner, callback){
 
 	//打开数据库
 	mongodb.open(function(err,db){
@@ -90,7 +90,7 @@ User.add = function(phoneNumber, _id, name, num, price, oldprice, owner, callbac
 			}
 
 			//更新user
-			collection.update({phoneNumber: phoneNumber}, {"$push":{"cart":[_id, name, num, price, oldprice, owner]}},function(err,user){
+			collection.update({phoneNumber: phoneNumber}, {"$push":{"cart":[_id, name, Number(num), Number(price), Number(oldprice), owner]}},function(err,user){
 				mongodb.close();
 				if(err){
 					return callback(err);
@@ -99,4 +99,39 @@ User.add = function(phoneNumber, _id, name, num, price, oldprice, owner, callbac
 			});
 		});
 	});
-} 
+}
+
+//修改购物车内商品数量
+User.changeCommodityNum = function(phoneNumber, index, num, callback){
+
+	//打开数据库
+	mongodb.open(function(err,db){
+		if(err){
+			mongodb.close();
+			return callback(err);
+		}
+
+		//读取users集合
+		db.collection('users', function(err, collection){
+			if(err){
+				mongodb.close();
+				return callback(err);
+			}
+
+			//更新user
+			var string = "cart."+index+".2";
+			var obj = {};
+			obj[string] = num;
+			console.log(obj);
+			collection.update({phoneNumber: phoneNumber}, {"$inc": obj},function(err,user){
+				console.log(err);
+				console.log("增加成功！",phoneNumber,index,num);
+				mongodb.close();
+				if(err){
+					return callback(err);
+				}
+				callback(null,user);
+			});
+		});
+	});
+}
