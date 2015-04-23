@@ -1,7 +1,9 @@
 var express = require('express');
 var crypto = require('crypto'),
     User = require('../models/user.js'),
-    Commodity = require('../models/commodity.js');
+    Commodity = require('../models/commodity.js'),
+    Order = require('../models/order.js'),
+    ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app){
 
@@ -128,11 +130,20 @@ module.exports = function(app){
 	//用户中心
 	app.get('/user-center', checkLogin);
 	app.get('/user-center', function(req, res, next){
-		res.render('user-center', {
-			title:'用户中心',
-			user:req.session.user,
-			success: req.flash('success').toString(),
-			error: req.flash('error').toString()
+
+		//取得个人订单
+		Order.getByQuery({'buyer': req.session.user.phoneNumber}, 'createTime', -1, null, function(err, orders){
+			if(err){
+				req.flash('error', err);
+			}
+			console.log(orders);
+			res.render('user-center', {
+				title:'用户中心',
+				orders: orders,
+				user:req.session.user,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
 		});
 	})
 
@@ -175,7 +186,7 @@ module.exports = function(app){
 	//取得个人商品
 	app.get('/my-commodities', checkLogin);
 	app.get('/my-commodities', function(req, res, next){
-		Commodity.getByQuery({'owner': req.session.user.phoneNumber}, 'createTime', -1, 12, function(err, commodities){
+		Commodity.getByQuery({'owner': req.session.user.phoneNumber}, 'createTime', -1, null, function(err, commodities){
 			if(err){
 				req.flash('error', err);
 			}
@@ -277,6 +288,49 @@ module.exports = function(app){
 				});
 				
 			});
+		}
+	});
+
+	//订单详情页
+	app.get('/order', checkLogin);
+	app.get('/order', function(req, res, next){
+
+		//提交订单
+		if(req.query.op === 'submit'){
+
+			//创建订单
+			User.get(req.session.user.phoneNumber,function(err, user){
+
+				var order = {
+					createTime: new Date(),
+					status: 0,
+					buyer: req.session.user.phoneNumber,
+					goods: user.cart
+				}
+
+				var newOrder = new Order(order);
+				newOrder.save(function(err, order){
+					if(err){
+						req.flash('error', err);
+					}
+					//修改库存
+					order[0].goods.forEach(function(e, i, a){
+						Commodity.edit({'id': new ObjectID(e[0])}, {'$inc': {'inventory': -e[2]}}, function(err){
+							if(err){req.flash('error', err);}
+						});
+					});
+					//清空购物车
+					User.clearCart(req.session.user.phoneNumber, function(err, user){
+						if(err){
+							console.log(err);
+							req.flash('error', err);
+						}
+						req.flash('success','订单提交成功！');
+						res.redirect('back');
+					});
+				});
+			});
+
 		}
 	});
 

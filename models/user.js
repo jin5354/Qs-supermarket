@@ -135,3 +135,33 @@ User.changeCommodityNum = function(phoneNumber, index, num, callback){
 		});
 	});
 }
+
+//清空购物车
+User.clearCart = function(phoneNumber, callback){
+	//打开数据库
+	mongodb.open(function(err,db){
+		if(err){
+			mongodb.close();
+			return callback(err);
+		}
+
+		//读取users集合
+		db.collection('users', function(err, collection){
+			if(err){
+				mongodb.close();
+				return callback(err);
+			}
+
+			//更新user
+			collection.update({phoneNumber: phoneNumber}, {"$set": {'cart':[]}},function(err,user){
+				console.log(err);
+				console.log("清空成功！",phoneNumber);
+				mongodb.close();
+				if(err){
+					return callback(err);
+				}
+				callback(null,user);
+			});
+		});
+	});
+}

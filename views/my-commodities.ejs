@@ -32,7 +32,8 @@
               <th>操作</th>
           </thead>
           <tbody>
-            <% commodities.forEach(function(commodity, index){
+            <% if(commodities.length!=0){
+                commodities.forEach(function(commodity, index){
                 %>
                     <tr>
                       <th scope="row"><%= index+1 %></th>
@@ -54,6 +55,9 @@
                     </tr>
                 <%
                 })
+            }else{
+              %> 暂无商品！ <%
+            }
             %>
           </tbody>
         </table>

@@ -126,3 +126,33 @@ Commodity.getByQuery = function(oFind, sortKey, order, limitNum, callback){
 		});
 	});
 }
+
+//修改商品属性
+Commodity.edit = function(oFind, oEdit, callback){
+
+	//打开数据库
+	mongodb.open(function(err, db){
+		if(err){
+			mongodb.close();
+			return callback(err);
+		}
+
+		//读取商品集合
+		db.collection('commodities', function(err, collection){
+			if(err){
+				mongodb.close();
+				return callback(err);
+			}
+
+			//获取查询结果
+			collection.update(oFind, oEdit, function(err, commodity){
+				mongodb.close();
+				if(err){
+					return callback(err);
+				}
+				console.log('Commodity edit success.', oFind, oEdit);
+				callback(null, commodity);
+			});
+		});
+	});
+}

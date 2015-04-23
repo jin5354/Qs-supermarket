@@ -19,7 +19,44 @@
               <h3 class="panel-title">我的订单</h3>
             </div>
             <div class="panel-body">
-              暂无订单！
+              <table class="table table-striped">
+                <tbody>
+                  <% if(orders.length!=0){
+                      orders.forEach(function(order, index){
+                      %>
+                          <tr>
+                            <td>订单号:<%= order._id %></td>
+                            <td colspan="2">下单时间:<%= order.createTime.toDateString() %></td>
+                            <td>状态:<% if(order.status == 0){%> 交易中 <%}
+                                  else if(order.trade == 1){%> 交易完成 <%}
+                                  %></td>
+                          </tr>
+                          <% 
+                          var sum = 0;  
+                          order.goods.forEach(function(e, i, a){
+                              sum+=e[2]*e[3];
+                              %>
+                                <tr>
+                                  <td><%= e[1] %></td>
+                                  <td><%= e[2] %></td>
+                                  <td><%= e[3] %>元</td>
+                                  <td><%= e[2]*e[3] %>元</td>
+                                </tr>
+                              <%
+                            });
+                          %>
+                          <tr>
+                            <td colspan="3">总计</td>
+                            <td><%= sum %>元</td>
+                          </tr>
+                      <%
+                      })
+                  }else{
+                    %> 暂无订单！ <%
+                  }
+                  %>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
