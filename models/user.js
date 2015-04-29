@@ -99,7 +99,7 @@ User.addCommodity = function(phoneNumber, _id, name, num, price, oldprice, owner
 			});
 		});
 	});
-}
+};
 
 //修改购物车内商品数量
 User.changeCommodityNum = function(phoneNumber, index, num, callback){
@@ -134,7 +134,7 @@ User.changeCommodityNum = function(phoneNumber, index, num, callback){
 			});
 		});
 	});
-}
+};
 
 //清空购物车
 User.clearCart = function(phoneNumber, callback){
@@ -164,4 +164,4 @@ User.clearCart = function(phoneNumber, callback){
 			});
 		});
 	});
-}
+};

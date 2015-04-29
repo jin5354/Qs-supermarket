@@ -1,4 +1,5 @@
 var express = require('express');
+var mongodb = require('../models/db.js');
 var crypto = require('crypto'),
     User = require('../models/user.js'),
     Commodity = require('../models/commodity.js'),
@@ -32,14 +33,14 @@ module.exports = function(app){
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
-	})
+	});
 
 	app.post('/login', checkNotLogin);
 	app.post('/login', function(req, res, next){
 		var phoneNumber = req.body.phoneNumber,
 			password = req.body.password;
 
-		var md5 = crypto.createHash('md5'),
+		var md5 = crypto.createHash('md5');
 			password = md5.update(req.body.password).digest('hex');
 
 		User.get(phoneNumber, function(err, user){
@@ -87,8 +88,8 @@ module.exports = function(app){
 		}
 
 		//生成密码的md5值
-		var md5 = crypto.createHash('md5'),
-			password = md5.update(req.body.password).digest('hex');
+		var md5 = crypto.createHash('md5');
+		password = md5.update(req.body.password).digest('hex');
 		var newUser = new User({
 			phoneNumber: phoneNumber,
 			password: password,
@@ -125,7 +126,7 @@ module.exports = function(app){
 		req.session.user = null;
 		req.flash('success', '成功退出！');
 		res.redirect('/');
-	})
+	});
 
 	//用户中心
 	app.get('/user-center', checkLogin);
@@ -145,7 +146,7 @@ module.exports = function(app){
 				error: req.flash('error').toString()
 			});
 		});
-	})
+	});
 
 	//上传商品信息
 	app.get('/upload-commodity', checkLogin);
@@ -263,10 +264,10 @@ module.exports = function(app){
 					}
 					var index;
 					user.cart.forEach(function(e, i){
-						if(e[0]==req.query.id){index = i};
+						if(e[0] == req.query.id){index = i;}
 					});
 					console.log(index);
-					if(index != undefined){
+					if(index !== undefined){
 						console.log("增加商品数量！",index,req.body.num);
 						User.changeCommodityNum(req.session.user.phoneNumber, index, Number(req.body.num), function(err, user){
 							if(err){
@@ -306,31 +307,58 @@ module.exports = function(app){
 					status: 0,
 					buyer: req.session.user.phoneNumber,
 					goods: user.cart
-				}
+				};
 
 				var newOrder = new Order(order);
 				newOrder.save(function(err, order){
 					if(err){
 						req.flash('error', err);
 					}
+
+					console.log('生成订单成功！');
 					//修改库存
-					order[0].goods.forEach(function(e, i, a){
-						Commodity.edit({'id': new ObjectID(e[0])}, {'$inc': {'inventory': -e[2]}}, function(err){
-							if(err){req.flash('error', err);}
-						});
-					});
-					//清空购物车
-					User.clearCart(req.session.user.phoneNumber, function(err, user){
+
+					//打开数据库
+					mongodb.open(function(err, db){
 						if(err){
-							console.log(err);
-							req.flash('error', err);
+							mongodb.close();
+							return req.flash('error', err);
 						}
-						req.flash('success','订单提交成功！');
-						res.redirect('back');
+
+						console.log('打开数据库成功！');
+
+						//读取商品集合
+						db.collection('commodities', function(err, collection){
+							if(err){
+								return req.flash('error', err);
+							}
+
+							console.log('读取商品集合成功！');
+							console.log(order[0].goods);
+
+							order[0].goods.forEach(function(e, i, a){
+								console.log('正在处理第'+i+1+'个商品。');
+								collection.update({'_id': new ObjectID(e[0])}, {'$inc': {'inventory': -e[2]}}, function(err, commodity){
+									console.log('Commodity edit success.');
+									mongodb.close();
+								});
+							});
+
+							console.log('修改库存成功！');
+											
+							//清空购物车
+							User.clearCart(req.session.user.phoneNumber, function(err, user){
+								if(err){
+									console.log(err);
+									req.flash('error', err);
+								}
+								req.flash('success','订单提交成功！');
+								res.redirect('back');
+							});
+						});
 					});
 				});
 			});
-
 		}
 	});
 
@@ -351,4 +379,4 @@ module.exports = function(app){
 		}
 		next();
 	}
-}
+};

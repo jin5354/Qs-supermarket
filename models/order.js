@@ -8,6 +8,11 @@ function Order(order){
 	this.status = order.status;
 }
 
+/*
+    status = 0 交易中
+             1 交易完成
+*/
+
 module.exports = Order;
 
 //存储订单信息
@@ -17,7 +22,7 @@ Order.prototype.save = function(callback){
     var order = {
         createTime: this.createTime,
         goods: this.goods,
-        buyer: this.buyer,
+        buyer: Number(this.buyer),
         status: this.status
     };
 
@@ -106,4 +111,4 @@ Order.getByQuery = function(oFind, sortKey, order, limitNum, callback){
             });
         });
     });
-}
+};

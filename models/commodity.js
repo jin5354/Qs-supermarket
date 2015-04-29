@@ -16,8 +16,7 @@ function Commodity(commodity){
 
 /*
 	trade: 	0 - onsale
-			1 - saleout
-			2 - offsale
+			1 - offsale
 */
 
 module.exports = Commodity;
@@ -27,17 +26,17 @@ Commodity.prototype.save = function(callback){
 
 	//要存入商品的数据文档
 	var commodity = {
-		owner: this.owner,
+		owner: Number(this.owner),
 		createTime: this.createTime,
 		name: this.name,
-		price: this.price,
-		oldPrice: this.oldPrice,
+		price: Number(this.price),
+		oldPrice: Number(this.oldPrice),
 		description: this.description,
-		inventory: this.inventory,
+		inventory: Number(this.inventory),
 		fineness: this.fineness,
-		trade: this.trade,
+		trade: Number(this.trade),
 		cate: this.cate
-	}
+	};
 
 	//打开数据库
 	mongodb.open(function(err,db){
@@ -60,7 +59,7 @@ Commodity.prototype.save = function(callback){
 			});
 		});
 	});
-}
+};
 
 //读取商品信息
 Commodity.getOne = function(_id,callback){
@@ -125,34 +124,10 @@ Commodity.getByQuery = function(oFind, sortKey, order, limitNum, callback){
 			});
 		});
 	});
-}
+};
 
 //修改商品属性
-Commodity.edit = function(oFind, oEdit, callback){
+Commodity.edit = function(collection, oFind, oEdit, callback){
 
-	//打开数据库
-	mongodb.open(function(err, db){
-		if(err){
-			mongodb.close();
-			return callback(err);
-		}
-
-		//读取商品集合
-		db.collection('commodities', function(err, collection){
-			if(err){
-				mongodb.close();
-				return callback(err);
-			}
-
-			//获取查询结果
-			collection.update(oFind, oEdit, function(err, commodity){
-				mongodb.close();
-				if(err){
-					return callback(err);
-				}
-				console.log('Commodity edit success.', oFind, oEdit);
-				callback(null, commodity);
-			});
-		});
-	});
-}
+	
+};
