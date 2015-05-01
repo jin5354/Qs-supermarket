@@ -266,7 +266,7 @@ module.exports = function(app){
 					user.cart.forEach(function(e, i){
 						if(e[0] == req.query.id){index = i;}
 					});
-					console.log(index);
+					//console.log(index);
 					if(index !== undefined){
 						console.log("增加商品数量！",index,req.body.num);
 						User.changeCommodityNum(req.session.user.phoneNumber, index, Number(req.body.num), function(err, user){

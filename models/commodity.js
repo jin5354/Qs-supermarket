@@ -125,9 +125,3 @@ Commodity.getByQuery = function(oFind, sortKey, order, limitNum, callback){
 		});
 	});
 };
-
-//修改商品属性
-Commodity.edit = function(collection, oFind, oEdit, callback){
-
-	
-};

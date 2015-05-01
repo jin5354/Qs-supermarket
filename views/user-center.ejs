@@ -26,10 +26,7 @@
                       %>
                           <tr>
                             <td><%= index+1 %> . 订单号:<%= order._id %></td>
-                            <td colspan="2">下单时间:<%= order.createTime.toDateString() %></td>
-                            <td>状态:<% if(order.status == 0){%> 交易中 <%}
-                                  else if(order.trade == 1){%> 交易完成 <%}
-                                  %></td>
+                            <td colspan="3">下单时间:<%= order.createTime.toDateString() %></td>
                           </tr>
                           <% 
                           var sum = 0;  

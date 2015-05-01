@@ -10,7 +10,6 @@ function Order(order){
 
 /*
     status = 0 交易中
-             1 交易完成
 */
 
 module.exports = Order;
